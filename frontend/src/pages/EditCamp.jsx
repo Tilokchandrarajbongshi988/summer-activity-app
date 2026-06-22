@@ -49,7 +49,7 @@ const EditCamp = () => {
       const res = await updateCamp(campId, formData);
       console.log(res);
 
-      navigate("/my-camps");
+      navigate("/host/my-camps");
     } catch (error) {
       console.log("Update failed:", error);
     } finally {

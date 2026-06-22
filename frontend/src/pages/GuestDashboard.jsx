@@ -18,3 +18,4 @@ const GuestDashboard = () => {
     </div>
   )
 }
+export default GuestDashboard

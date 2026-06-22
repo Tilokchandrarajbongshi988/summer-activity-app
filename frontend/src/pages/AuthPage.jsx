@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+
 import { useNavigate } from "react-router-dom"
 
 import { useState } from "react";
@@ -17,7 +20,7 @@ const AuthPage = () => {
   const [userType, setUserType] = useState("guest");
 
   const navigate = useNavigate();
-
+  const { setUser } = useContext(AuthContext);
   const handleLogin = async () => {
     try {
       const formData = {
@@ -33,6 +36,8 @@ const AuthPage = () => {
         return;
       }
 
+      setUser(data);
+      
       if (data.userType === "host") {
         navigate("/host/dashboard");
       } else {

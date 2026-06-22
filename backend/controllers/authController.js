@@ -50,9 +50,10 @@ exports.postSignUp = async (req, res, next) => {
 exports.postLogin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
+    console.log(email,password);
     const user = await User.findOne({ email });
     const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
-
+    console.log(isPasswordCorrect)
     if (!user || !isPasswordCorrect) {
       return res.status(400).json({ error: "Invalid email or password" });
     };
@@ -80,5 +81,8 @@ exports.postLogout =async (req, res) => {
   }
 }
 exports.getMe = (req, res) => {
-  res.status(200).json(req.user);
+  res.status(200).json({
+    success: true,
+    user: req.user
+  });
 };
