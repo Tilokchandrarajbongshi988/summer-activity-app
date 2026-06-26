@@ -4,7 +4,7 @@ A full-stack MERN camp booking application where hosts can create and manage sum
 
 ## Live Demo
 
-[View Live App](https://summer-activity-app-1.onrender.com/)
+[View Live App](https://summer-activity-app.onrender.com)
 
 Note: This app is hosted on Render's free plan, so the first load may take a few seconds if the server was inactive.
 
