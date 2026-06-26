@@ -12,7 +12,7 @@ const guestRou = require("./routes/guestRou");
 const bookingRou = require("./routes/bookingRou");
 const favouriteRou = require("./routes/favouriteRou");
 const hostRou = require("./routes/hostRou");
-const connectToMongoDB = require("./MongoConnect/connectToMongoDb");
+const connectToMongoDB = require("./mongoConnect/connectToMongoDB");
 const cookieParser = require("cookie-parser");
 
 const PORT = process.env.PORT || 5000;
