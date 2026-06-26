@@ -1,4 +1,3 @@
-// pages/CreateCamp.jsx
 import { useNavigate } from "react-router-dom";
 import CampForm from "../components/CampForm";
 import SunnyPage from "../components/SunnyPage";
@@ -19,10 +18,10 @@ const CreateCamp = () => {
   return (
     <SunnyPage
       title="Create New Camp"
-      subtitle="Add a bright summer activity for guests to discover."
+      subtitle="Add a summer activity for guests to discover."
       maxWidth="max-w-3xl"
     >
-      <div className="rounded-[2rem] border border-white/60 bg-white/75 p-8 shadow-xl backdrop-blur-md">
+      <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
         <CampForm
           onSubmit={handleCreate}
           submitting={loading}

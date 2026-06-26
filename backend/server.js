@@ -1,11 +1,9 @@
-//external module
 const express = require('express');
 const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require("path");
 
 dotenv.config();
-//internal module
 
 const authRou = require("./routes/authRou");
 const guestRou = require("./routes/guestRou");
@@ -48,5 +46,4 @@ app.get("/{*splat}", (req, res) => {
 
 app.listen(PORT, () => {
   connectToMongoDB();
-  console.log(`Server running on address http://localhost:${PORT}`);
 });

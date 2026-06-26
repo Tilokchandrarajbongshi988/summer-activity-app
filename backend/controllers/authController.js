@@ -14,7 +14,6 @@ const isValidEmail = (email) => EMAIL_REGEX.test(email.trim());
 exports.postSignUp = async (req, res, next) => {
   try {
     const { fullName, email, password, confirmPassword, userType} = req.body;
-    console.log(req.body);
 
     if (!fullName?.trim()) {
       return res.status(400).json({ error: "Full name is required" });
@@ -70,9 +69,7 @@ exports.postSignUp = async (req, res, next) => {
       userType: newUser.userType,
     });
 
-  } catch (error) {
-    console.log("Error in signup controller:", error.message);
-
+  } catch {
     res.status(500).json({
       error: "Internal server error",
     });
@@ -82,7 +79,6 @@ exports.postSignUp = async (req, res, next) => {
 exports.postLogin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    console.log(email,password);
 
     if (!email?.trim()) {
       return res.status(400).json({ error: "Email is required" });
@@ -103,7 +99,7 @@ exports.postLogin = async (req, res, next) => {
     const normalizedEmail = email.trim().toLowerCase();
     const user = await User.findOne({ email: normalizedEmail });
     const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
-    console.log(isPasswordCorrect)
+
     if (!user || !isPasswordCorrect) {
       return res.status(400).json({ error: "Invalid email or password" });
     };
@@ -115,18 +111,16 @@ exports.postLogin = async (req, res, next) => {
       userType: user.userType,
     });
 
-  } catch (error) {
-    console.log("error in login controller", error.message)
+  } catch {
     res.status(500).json({ error: "Internal server error" })
   }
 }
 
 exports.postLogout =async (req, res) => {
   try {
-    res.cookie("jwt", "", {maxAge:0}); //res.cookie(name, value, options);
+    res.cookie("jwt", "", {maxAge:0});
     res.status(200).json({message: "logged out successfully"});
-  } catch (error) {
-    console.log("error in logout controller", error.message)
+  } catch {
     res.status(500).json({ error: "Internal server error" })
   }
 }

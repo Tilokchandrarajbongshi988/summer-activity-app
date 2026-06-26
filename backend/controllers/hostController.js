@@ -31,8 +31,6 @@ const validateCampPhoto = (photo) => {
 
 exports.createCamp = async (req, res, next) => {
   try {
-    console.log("BODY:", req.body);
-    console.log("USER:", req.user);
     if (req.user.userType !== "host") {
       return res.status(403).json({
         error: "only hosts can create camps"
@@ -56,8 +54,7 @@ exports.createCamp = async (req, res, next) => {
       host: req.user._id
     })
     res.status(201).json(camp);
-  } catch (error) {
-    console.log("Error creating camp:", error);
+  } catch {
     res.status(500).json({
       error: "Internal server error"
     });
@@ -74,8 +71,7 @@ exports.getMyCamps = async (req, res) => {
 
     res.status(200).json(camps);
 
-  } catch (error) {
-    console.log(error);
+  } catch {
     res.status(500).json({
       error: "Internal server error"
     });
@@ -98,9 +94,7 @@ exports.getCampById = async (req, res) => {
 
     res.status(200).json(camp);
 
-  } catch (error) {
-    console.log(error);
-
+  } catch {
     res.status(500).json({
       error: "Internal server error",
     });
@@ -136,8 +130,7 @@ exports.updateCamp = async (req, res) => {
 
     res.status(200).json(updatedCamp);
 
-  } catch (error) {
-    console.log(error);
+  } catch {
     res.status(500).json({
       error: "Internal server error",
     });
@@ -181,7 +174,7 @@ exports.deleteCamp = async (req, res) => {
       message: "Camp deleted successfully",
     });
 
-  } catch (error) {
+  } catch {
     res.status(500).json({
       error: "Internal server error",
     });

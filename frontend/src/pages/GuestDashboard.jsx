@@ -11,39 +11,26 @@ const GuestDashboard = () => {
       <div className="grid gap-6 sm:grid-cols-3">
         <Link
           to="/camps"
-          className="rounded-[1.75rem] border border-white/60 bg-white/70 p-7 shadow-xl backdrop-blur-md transition hover:-translate-y-1 hover:shadow-2xl"
+          className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:border-gray-300 hover:shadow-md"
         >
-          <p className="text-4xl">🏕️</p>
-          <h2 className="mt-4 text-2xl font-black text-orange-950">
-            All Camps
-          </h2>
-          <p className="mt-2 text-orange-900">
-            Browse every available camp.
-          </p>
+          <h2 className="text-2xl font-bold text-gray-900">All Camps</h2>
+          <p className="mt-2 text-gray-600">Browse every available camp.</p>
         </Link>
 
         <Link
           to="/bookings"
-          className="rounded-[1.75rem] border border-white/60 bg-white/70 p-7 shadow-xl backdrop-blur-md transition hover:-translate-y-1 hover:shadow-2xl"
+          className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:border-gray-300 hover:shadow-md"
         >
-          <p className="text-4xl">🎟️</p>
-          <h2 className="mt-4 text-2xl font-black text-orange-950">
-            Bookings
-          </h2>
-          <p className="mt-2 text-orange-900">
-            View the camps you booked.
-          </p>
+          <h2 className="text-2xl font-bold text-gray-900">Bookings</h2>
+          <p className="mt-2 text-gray-600">View the camps you booked.</p>
         </Link>
 
         <Link
           to="/favorites"
-          className="rounded-[1.75rem] border border-white/60 bg-white/70 p-7 shadow-xl backdrop-blur-md transition hover:-translate-y-1 hover:shadow-2xl"
+          className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:border-gray-300 hover:shadow-md"
         >
-          <p className="text-4xl">⭐</p>
-          <h2 className="mt-4 text-2xl font-black text-orange-950">
-            Favorites
-          </h2>
-          <p className="mt-2 text-orange-900">See your saved camps.</p>
+          <h2 className="text-2xl font-bold text-gray-900">Favorites</h2>
+          <p className="mt-2 text-gray-600">See your saved camps.</p>
         </Link>
       </div>
     </SunnyPage>

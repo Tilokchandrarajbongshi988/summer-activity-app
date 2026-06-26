@@ -25,7 +25,7 @@ const HostCamps = () => {
   if (!loading && camps.length === 0) {
     return (
       <SunnyPage title="My Camps">
-        <p className="rounded-2xl bg-white/60 p-6 text-orange-950 shadow">
+        <p className="rounded-xl border border-gray-200 bg-white p-6 text-gray-700 shadow-sm">
           You haven&apos;t created any camps yet.
         </p>
       </SunnyPage>
@@ -42,7 +42,7 @@ const HostCamps = () => {
         {camps.map((camp) => (
           <div
             key={camp._id}
-            className="overflow-hidden rounded-[2rem] border border-white/60 bg-white/70 shadow-xl backdrop-blur-md transition hover:-translate-y-1 hover:shadow-2xl"
+            className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:border-gray-300 hover:shadow-md"
           >
             <CampImage
               src={camp.photo}
@@ -50,15 +50,15 @@ const HostCamps = () => {
               className="h-64 w-full"
             />
 
-            <div className="p-7">
-              <h3 className="text-2xl font-black text-orange-950">
+            <div className="p-6">
+              <h3 className="text-2xl font-bold text-gray-900">
                 {camp.activityName}
               </h3>
-              <p className="mt-3 text-orange-900">Location: {camp.location}</p>
-              <p className="mt-1 font-semibold text-orange-900">
-                Price: ₹{camp.price}
+              <p className="mt-3 text-gray-600">Location: {camp.location}</p>
+              <p className="mt-1 font-medium text-gray-700">
+                Price: Rs. {camp.price}
               </p>
-              <p className="mt-4 line-clamp-3 text-orange-950">
+              <p className="mt-4 line-clamp-3 text-gray-700">
                 {camp.description || "No description available."}
               </p>
 
@@ -66,7 +66,7 @@ const HostCamps = () => {
                 <button
                   type="button"
                   onClick={() => navigate(`/host/edit-camp/${camp._id}`)}
-                  className="rounded-full bg-orange-600 px-5 py-2.5 font-bold text-white shadow hover:bg-orange-700"
+                  className="rounded-lg bg-gray-900 px-4 py-2.5 font-semibold text-white hover:bg-gray-800"
                 >
                   Edit
                 </button>
@@ -75,7 +75,7 @@ const HostCamps = () => {
                   type="button"
                   onClick={() => handleDelete(camp._id)}
                   disabled={deletingCamp}
-                  className="flex items-center justify-center gap-2 rounded-full bg-red-600 px-5 py-2.5 font-bold text-white shadow hover:bg-red-700 disabled:opacity-50"
+                  className="flex items-center justify-center gap-2 rounded-lg bg-red-600 px-4 py-2.5 font-semibold text-white hover:bg-red-700 disabled:opacity-50"
                 >
                   Delete
                 </button>

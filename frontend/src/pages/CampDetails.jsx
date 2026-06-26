@@ -52,7 +52,7 @@ const CampDetails = () => {
   if (!selectedCamp) {
     return (
       <SunnyPage>
-        <p className="rounded-2xl bg-white/60 p-6 text-orange-950 shadow">
+        <p className="rounded-xl border border-gray-200 bg-white p-6 text-gray-700 shadow-sm">
           Camp not found.
         </p>
       </SunnyPage>
@@ -61,25 +61,23 @@ const CampDetails = () => {
 
   return (
     <SunnyPage maxWidth="max-w-3xl">
-      <div className="rounded-[2rem] border border-white/60 bg-white/75 p-7 shadow-xl backdrop-blur-md">
+      <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
         <CampImage
           src={selectedCamp.photo}
           alt={selectedCamp.activityName}
           className="h-80 w-full"
-          rounded="rounded-[1.5rem]"
+          rounded="rounded-xl"
         />
 
-        <h1 className="mt-6 text-3xl font-black text-orange-950">
+        <h1 className="mt-6 text-3xl font-bold text-gray-900">
           {selectedCamp.activityName}
         </h1>
-        <p className="mt-2 text-orange-900">
-          Location: {selectedCamp.location}
-        </p>
-        <p className="font-semibold text-orange-900">
-          Price: ₹{selectedCamp.price}
+        <p className="mt-2 text-gray-600">Location: {selectedCamp.location}</p>
+        <p className="font-medium text-gray-700">
+          Price: Rs. {selectedCamp.price}
         </p>
 
-        <p className="mt-5 rounded-2xl bg-orange-50 p-5 text-orange-950">
+        <p className="mt-5 rounded-xl border border-gray-200 bg-gray-50 p-5 text-gray-700">
           {selectedCamp.description || "No description available."}
         </p>
 
@@ -88,7 +86,7 @@ const CampDetails = () => {
             type="button"
             onClick={handleFavorite}
             disabled={updatingFavorite || bookingCamp}
-            className="flex items-center justify-center gap-2 rounded-full bg-orange-600 px-6 py-3 font-bold text-white shadow hover:bg-orange-700 disabled:opacity-50"
+            className="flex items-center justify-center gap-2 rounded-lg border border-gray-300 px-5 py-2.5 font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-50"
           >
             {updatingFavorite ? "Saving..." : "Favorite"}
           </button>
@@ -97,7 +95,7 @@ const CampDetails = () => {
             type="button"
             onClick={handleBook}
             disabled={updatingFavorite || bookingCamp}
-            className="flex items-center justify-center gap-2 rounded-full bg-green-600 px-6 py-3 font-bold text-white shadow hover:bg-green-700 disabled:opacity-50"
+            className="flex items-center justify-center gap-2 rounded-lg bg-gray-900 px-5 py-2.5 font-semibold text-white hover:bg-gray-800 disabled:opacity-50"
           >
             {bookingCamp ? "Booking..." : "Book"}
           </button>

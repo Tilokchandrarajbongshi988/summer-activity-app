@@ -13,7 +13,7 @@ import HostDashboard from "./pages/HostDashboard";
 import CreateCamp from "./pages/CreateCamp";
 import HostCamps from "./pages/HostCamps";
 import EditCamp from "./pages/EditCamp";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider } from "./context/AuthProvider";
 import ProtectedRoute from "./components/ProtectedRoute"
 import Navbar from "./components/Navbar";
 
@@ -24,10 +24,8 @@ function App() {
         <Toaster position="top-center" />
         <Navbar />
         <Routes>
-          {/* Public Route */}
           <Route path="/" element={<AuthPage />} />
 
-          {/* Guest Protected Routes */}
           <Route
             path="/guest/dashboard"
             element={
@@ -55,7 +53,6 @@ function App() {
             }
           />
 
-          {/* Guest Camps */}
           <Route
             path="/camps"
             element={
@@ -74,7 +71,6 @@ function App() {
             }
           />
 
-          {/* Host Protected Routes */}
           <Route
             path="/host/dashboard"
             element={

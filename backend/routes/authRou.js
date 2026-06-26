@@ -1,8 +1,6 @@
-// External Module
 const express = require("express");
 const authRou = express.Router();
 
-// Local Module
 const authController = require("../controllers/authController");
 const protectRoute = require("../middleware/protectRoute");
 

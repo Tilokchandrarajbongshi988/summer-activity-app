@@ -37,12 +37,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 flex flex-wrap items-center justify-between gap-3 border-b border-orange-200 bg-white/85 px-6 py-4 shadow backdrop-blur">
+    <nav className="sticky top-0 z-50 flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 bg-white px-6 py-4 shadow-sm">
       <div className="flex flex-wrap items-center gap-3">
         <Link
           to={dashboardPath}
           title="Home"
-          className="rounded-full bg-orange-100 px-5 py-2 font-bold text-orange-950 hover:bg-orange-200"
+          className="rounded-lg bg-gray-100 px-4 py-2 font-semibold text-gray-900 hover:bg-gray-200"
         >
           Home
         </Link>
@@ -51,7 +51,7 @@ const Navbar = () => {
           <Link
             key={link.path}
             to={link.path}
-            className="rounded-full px-4 py-2 font-semibold text-orange-950 hover:bg-orange-100"
+            className="rounded-lg px-3 py-2 font-medium text-gray-700 hover:bg-gray-100"
           >
             {link.label}
           </Link>
@@ -62,7 +62,7 @@ const Navbar = () => {
         type="button"
         onClick={handleLogout}
         disabled={loggingOut}
-        className="flex items-center justify-center gap-2 rounded-full bg-red-600 px-5 py-2 font-bold text-white shadow hover:bg-red-700 disabled:opacity-50"
+        className="flex items-center justify-center gap-2 rounded-lg bg-red-600 px-4 py-2 font-semibold text-white hover:bg-red-700 disabled:opacity-50"
       >
         {loggingOut ? "Logging out..." : "Logout"}
       </button>

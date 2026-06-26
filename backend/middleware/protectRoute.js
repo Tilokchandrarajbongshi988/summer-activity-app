@@ -4,8 +4,7 @@ const User = require("../models/user");
 const protectRoute = async (req, res, next) => {
   try {
     const token = req.cookies.jwt;
-    console.log("Cookies:", req.cookies);
-    console.log("Token:", token);
+
     if (!token) {
       return res.status(401).json({ error: "Unauthorized-No Token Provided" });
     }
@@ -18,9 +17,7 @@ const protectRoute = async (req, res, next) => {
     req.user = user
     next()
 
-  } catch (error) {
-    console.log("JWT ERROR:", error.message);
-
+  } catch {
     return res.status(401).json({
       error: "Unauthorized - Invalid Token",
     });

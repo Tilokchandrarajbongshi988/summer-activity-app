@@ -5,8 +5,6 @@ import LoadingSpinner from "./LoadingSpinner";
 
 const ProtectedRoute = ({ children, role }) => {
   const { user, loading } = useContext(AuthContext);
-  console.log("ProtectedRoute user:", user);
-  console.log("ProtectedRoute loading:", loading);
 
   if (loading) {
     return <LoadingSpinner text="Checking your session..." />;

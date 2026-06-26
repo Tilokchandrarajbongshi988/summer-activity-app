@@ -1,8 +1,6 @@
-// External Module
 const express = require("express");
 const guestRou = express.Router();
 
-// Local Module
 const protectRoute = require("../middleware/protectRoute");
 const guestController = require("../controllers/guestController");
 

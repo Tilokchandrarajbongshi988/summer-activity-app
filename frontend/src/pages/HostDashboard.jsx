@@ -11,41 +11,28 @@ const HostDashboard = () => {
       <div className="grid gap-6 sm:grid-cols-3">
         <Link
           to="/host/my-camps"
-          className="rounded-[1.75rem] border border-white/60 bg-white/70 p-7 shadow-xl backdrop-blur-md transition hover:-translate-y-1 hover:shadow-2xl"
+          className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:border-gray-300 hover:shadow-md"
         >
-          <p className="text-4xl">📋</p>
-          <h2 className="mt-4 text-2xl font-black text-orange-950">
-            Host Camps
-          </h2>
-          <p className="mt-2 text-orange-900">
-            View all camps you created.
-          </p>
+          <h2 className="text-2xl font-bold text-gray-900">Host Camps</h2>
+          <p className="mt-2 text-gray-600">View all camps you created.</p>
         </Link>
 
         <Link
           to="/host/my-camps"
-          className="rounded-[1.75rem] border border-white/60 bg-white/70 p-7 shadow-xl backdrop-blur-md transition hover:-translate-y-1 hover:shadow-2xl"
+          className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:border-gray-300 hover:shadow-md"
         >
-          <p className="text-4xl">✏️</p>
-          <h2 className="mt-4 text-2xl font-black text-orange-950">
-            Edit Camp
-          </h2>
-          <p className="mt-2 text-orange-900">
+          <h2 className="text-2xl font-bold text-gray-900">Edit Camp</h2>
+          <p className="mt-2 text-gray-600">
             Choose a camp and edit its details.
           </p>
         </Link>
 
         <Link
           to="/host/create-camp"
-          className="rounded-[1.75rem] border border-white/60 bg-white/70 p-7 shadow-xl backdrop-blur-md transition hover:-translate-y-1 hover:shadow-2xl"
+          className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:border-gray-300 hover:shadow-md"
         >
-          <p className="text-4xl">☀️</p>
-          <h2 className="mt-4 text-2xl font-black text-orange-950">
-            Create Camp
-          </h2>
-          <p className="mt-2 text-orange-900">
-            Add a new summer activity.
-          </p>
+          <h2 className="text-2xl font-bold text-gray-900">Create Camp</h2>
+          <p className="mt-2 text-gray-600">Add a new summer activity.</p>
         </Link>
       </div>
     </SunnyPage>

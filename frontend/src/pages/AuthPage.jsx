@@ -7,6 +7,9 @@ import { login, signUp } from "../services/authService";
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_PASSWORD_LENGTH = 6;
 
+const inputClassName =
+  "w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none placeholder:text-gray-400 focus:border-gray-500 focus:ring-1 focus:ring-gray-500";
+
 const isValidEmail = (value) => EMAIL_REGEX.test(value.trim());
 
 const AuthPage = () => {
@@ -118,8 +121,7 @@ const AuthPage = () => {
       } else {
         navigate("/guest/dashboard");
       }
-    } catch (error) {
-      console.log(error);
+    } catch {
       toast.error("Something went wrong");
     } finally {
       setAuthLoading(false);
@@ -148,8 +150,7 @@ const AuthPage = () => {
 
       toast.success("Account created. Please login.");
       setIsSignup(false);
-    } catch (error) {
-      console.log(error);
+    } catch {
       toast.error("Something went wrong");
     } finally {
       setAuthLoading(false);
@@ -157,61 +158,55 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-yellow-100 via-orange-100 to-amber-200">
-      <div className="absolute -left-32 top-16 h-96 w-96 rounded-full bg-yellow-200/40 blur-3xl" />
-      <div className="absolute right-0 top-40 h-[28rem] w-[28rem] rounded-full bg-orange-200/25 blur-3xl" />
-      <div className="absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-amber-200/30 blur-3xl" />
-
-      <nav className="relative z-10 flex justify-end px-8 py-6">
+    <div className="min-h-screen bg-gray-50">
+      <nav className="flex justify-end px-8 py-6">
         <button
           type="button"
           onClick={openLogin}
-          className="rounded-full bg-orange-500 px-6 py-3 font-semibold text-white shadow-lg hover:bg-orange-600"
+          className="rounded-lg bg-gray-900 px-5 py-2.5 font-medium text-white hover:bg-gray-800"
         >
           Login
         </button>
       </nav>
 
-      <section className="relative z-10 flex min-h-[calc(100vh-96px)] items-center justify-center px-6 text-center">
-        <div className="relative max-w-5xl">
+      <section className="flex min-h-[calc(100vh-88px)] items-center justify-center px-6 text-center">
+        <div className="relative max-w-4xl">
           <img
             src="/hat-svgrepo-com.svg"
             alt="Summer hat"
-            className="absolute -top-16 left-1/2 z-20 h-24 w-24 -translate-x-1/2 rotate-[-18deg] drop-shadow-lg sm:-top-24 sm:h-32 sm:w-32"
+            className="absolute -top-14 left-1/2 z-10 h-20 w-20 -translate-x-1/2 rotate-[-18deg] drop-shadow sm:-top-20 sm:h-28 sm:w-28"
           />
 
-          <h1 className="relative rounded-[2rem] bg-white/60 px-8 py-8 text-5xl font-black leading-tight text-orange-950 shadow-2xl backdrop-blur-md sm:text-7xl lg:text-8xl">
+          <h1 className="rounded-2xl border border-gray-200 bg-white px-8 py-10 text-5xl font-bold leading-tight text-gray-900 shadow-sm sm:text-6xl lg:text-7xl">
             Ready for Summer Activity
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl rounded-full bg-white/60 px-6 py-3 text-lg font-semibold text-orange-900 shadow backdrop-blur-md">
-            Discover sunny camps, outdoor fun, and happy little adventures.
+          <p className="mx-auto mt-5 max-w-xl text-lg text-gray-600">
+            Discover camps, outdoor fun, and simple summer adventures.
           </p>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <button
-              type="button"
-              onClick={openSignup}
-              className="rounded-full bg-orange-500 px-8 py-4 text-lg font-bold text-white shadow-lg hover:bg-orange-600"
-            >
-              Create Account
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={openSignup}
+            className="mt-8 rounded-lg bg-gray-900 px-6 py-3 font-semibold text-white hover:bg-gray-800"
+          >
+            Create Account
+          </button>
         </div>
       </section>
 
       {showAuthPanel && (
-        <div className="absolute inset-0 z-30 flex items-center justify-center bg-orange-950/35 px-4 backdrop-blur-sm">
-          <div className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-3xl border border-white/50 bg-orange-950/75 p-8 shadow-2xl backdrop-blur-xl">
+        <div className="fixed inset-0 z-30 flex items-center justify-center bg-black/40 px-4">
+          <div className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl border border-gray-200 bg-white p-8 shadow-lg">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h1 className="text-4xl font-bold text-white">
+                <h1 className="text-3xl font-bold text-gray-900">
                   {isSignup ? "Create Account" : "Login"}
                 </h1>
 
-                <p className="mt-2 text-white/70">
+                <p className="mt-2 text-gray-600">
                   {isSignup
-                    ? "Join the summer fun"
+                    ? "Create your Summer Activity account"
                     : "Welcome back to Summer Activity"}
                 </p>
               </div>
@@ -219,7 +214,7 @@ const AuthPage = () => {
               <button
                 type="button"
                 onClick={() => setShowAuthPanel(false)}
-                className="rounded-full bg-white/20 px-3 py-1 text-2xl text-white hover:bg-white/30"
+                className="rounded-lg px-3 py-1 text-2xl text-gray-500 hover:bg-gray-100"
               >
                 ×
               </button>
@@ -234,7 +229,7 @@ const AuthPage = () => {
                   required
                   inputMode="email"
                   autoComplete="email"
-                  className="w-full rounded-xl bg-white/20 px-4 py-3 text-white outline-none placeholder:text-orange-50/60 focus:ring-2 focus:ring-yellow-300"
+                  className={inputClassName}
                   onChange={(e) => setEmail(e.target.value)}
                 />
 
@@ -245,7 +240,7 @@ const AuthPage = () => {
                   required
                   minLength={MIN_PASSWORD_LENGTH}
                   autoComplete="current-password"
-                  className="w-full rounded-xl bg-white/20 px-4 py-3 text-white outline-none placeholder:text-orange-50/60 focus:ring-2 focus:ring-yellow-300"
+                  className={inputClassName}
                   onChange={(e) => setPassword(e.target.value)}
                 />
 
@@ -253,17 +248,17 @@ const AuthPage = () => {
                   type="button"
                   onClick={handleLogin}
                   disabled={authLoading}
-                  className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-orange-500 py-3 font-semibold text-white shadow hover:bg-orange-600 disabled:opacity-50"
+                  className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-gray-900 py-3 font-semibold text-white hover:bg-gray-800 disabled:opacity-50"
                 >
                   {authLoading ? "Logging in..." : "Login"}
                 </button>
 
-                <p className="text-center text-white/70">
+                <p className="text-center text-gray-600">
                   Don&apos;t have an account?{" "}
                   <button
                     type="button"
                     onClick={() => setIsSignup(true)}
-                    className="cursor-pointer font-semibold text-yellow-300"
+                    className="cursor-pointer font-semibold text-gray-900 underline"
                   >
                     Sign Up
                   </button>
@@ -277,7 +272,7 @@ const AuthPage = () => {
                   value={fullName}
                   required
                   autoComplete="name"
-                  className="w-full rounded-xl bg-white/20 px-4 py-3 text-white outline-none placeholder:text-orange-50/60 focus:ring-2 focus:ring-yellow-300"
+                  className={inputClassName}
                   onChange={(e) => setFullName(e.target.value)}
                 />
 
@@ -288,7 +283,7 @@ const AuthPage = () => {
                   required
                   inputMode="email"
                   autoComplete="email"
-                  className="w-full rounded-xl bg-white/20 px-4 py-3 text-white outline-none placeholder:text-orange-50/60 focus:ring-2 focus:ring-yellow-300"
+                  className={inputClassName}
                   onChange={(e) => setSignupEmail(e.target.value)}
                 />
 
@@ -299,7 +294,7 @@ const AuthPage = () => {
                   required
                   minLength={MIN_PASSWORD_LENGTH}
                   autoComplete="new-password"
-                  className="w-full rounded-xl bg-white/20 px-4 py-3 text-white outline-none placeholder:text-orange-50/60 focus:ring-2 focus:ring-yellow-300"
+                  className={inputClassName}
                   onChange={(e) => setSignupPassword(e.target.value)}
                 />
 
@@ -310,11 +305,11 @@ const AuthPage = () => {
                   required
                   minLength={MIN_PASSWORD_LENGTH}
                   autoComplete="new-password"
-                  className="w-full rounded-xl bg-white/20 px-4 py-3 text-white outline-none placeholder:text-orange-50/60 focus:ring-2 focus:ring-yellow-300"
+                  className={inputClassName}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
 
-                <div className="flex gap-6 text-white">
+                <div className="flex gap-6 text-gray-700">
                   <label className="flex cursor-pointer items-center gap-2">
                     <input
                       type="radio"
@@ -342,17 +337,17 @@ const AuthPage = () => {
                   type="button"
                   onClick={handleSignUp}
                   disabled={authLoading}
-                  className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-orange-500 py-3 font-semibold text-white shadow hover:bg-orange-600 disabled:opacity-50"
+                  className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-gray-900 py-3 font-semibold text-white hover:bg-gray-800 disabled:opacity-50"
                 >
                   {authLoading ? "Creating..." : "Create Account"}
                 </button>
 
-                <p className="text-center text-white/70">
+                <p className="text-center text-gray-600">
                   Already have an account?{" "}
                   <button
                     type="button"
                     onClick={() => setIsSignup(false)}
-                    className="cursor-pointer font-semibold text-yellow-300"
+                    className="cursor-pointer font-semibold text-gray-900 underline"
                   >
                     Login
                   </button>

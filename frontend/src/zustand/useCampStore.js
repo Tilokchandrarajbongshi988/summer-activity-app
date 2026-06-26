@@ -1,4 +1,3 @@
-// zustand/useCampStore.js
 import { create } from "zustand";
 
 const useCampStore = create((set) => ({

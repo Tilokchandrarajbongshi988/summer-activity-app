@@ -1,9 +1,7 @@
-/* eslint-disable react-refresh/only-export-components */
-import { createContext, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { logout as logoutRequest } from "../services/authService";
 import useCampStore from "../zustand/useCampStore";
-
-export const AuthContext = createContext();
+import { AuthContext } from "./AuthContext";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -12,14 +10,11 @@ export const AuthProvider = ({ children }) => {
 
   const getMe = useCallback(async () => {
     try {
-      console.log("calling /me");
-
       const res = await fetch("/api/auth/me", {
-        credentials: "include"
+        credentials: "include",
       });
 
       const data = await res.json();
-      console.log("ME RESPONSE", data)
 
       if (!res.ok) {
         setUser(null);
@@ -27,8 +22,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       setUser(data.user);
-    } catch (err) {
-      console.log(err);
+    } catch {
       setUser(null);
     } finally {
       setLoading(false);
@@ -38,8 +32,8 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await logoutRequest();
-    } catch (err) {
-      console.log(err);
+    } catch {
+      setUser(null);
     } finally {
       setUser(null);
       clearCampStore();

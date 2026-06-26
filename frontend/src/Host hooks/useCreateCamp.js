@@ -1,5 +1,3 @@
-// useCreateCamp.js
-
 import { useState } from "react";
 import toast from "react-hot-toast";
 import useCampStore from "../zustand/useCampStore";
