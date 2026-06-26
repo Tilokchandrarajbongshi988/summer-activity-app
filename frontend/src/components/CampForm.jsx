@@ -1,4 +1,8 @@
 import { useState } from "react";
+import CampImage from "./CampImage";
+
+const MAX_IMAGE_SIZE = 1024 * 1024;
+const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png"];
 
 const CampForm = ({
   initialValues = {},
@@ -9,11 +13,13 @@ const CampForm = ({
   submitLabel = "Update",
   submittingLabel = "Updating...",
 }) => {
+  const [imageError, setImageError] = useState("");
   const [form, setForm] = useState({
     activityName: initialValues.activityName || "",
     price: initialValues.price || "",
     location: initialValues.location || "",
     description: initialValues.description || "",
+    photo: initialValues.photo || "",
   });
 
   const handleChange = (e) => {
@@ -22,6 +28,46 @@ const CampForm = ({
       ...currentForm,
       [name]: value,
     }));
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImageError("");
+
+    if (!file) {
+      return;
+    }
+
+    if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
+      setImageError("Please upload only JPG or PNG images.");
+      e.target.value = "";
+      return;
+    }
+
+    if (file.size > MAX_IMAGE_SIZE) {
+      setImageError("Image must be 1 MB or smaller.");
+      e.target.value = "";
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setForm((currentForm) => ({
+        ...currentForm,
+        photo: reader.result,
+      }));
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  const handleRemoveImage = () => {
+    setForm((currentForm) => ({
+      ...currentForm,
+      photo: "",
+    }));
+    setImageError("");
   };
 
   const handleSubmit = (e) => {
@@ -71,6 +117,48 @@ const CampForm = ({
           placeholder="5000"
           className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium mb-2">
+          Camp Image
+        </label>
+
+        <input
+          type="file"
+          accept="image/jpeg,image/png"
+          onChange={handleImageChange}
+          disabled={busy}
+          className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+
+        <p className="mt-2 text-sm text-gray-500">
+          JPG or PNG only. Maximum size: 1 MB.
+        </p>
+
+        {imageError && (
+          <p className="mt-2 text-sm text-red-600">{imageError}</p>
+        )}
+
+        {form.photo && (
+          <div className="mt-4">
+            <CampImage
+              src={form.photo}
+              alt="Camp preview"
+              className="h-48 w-full"
+              rounded="rounded-xl"
+            />
+
+            <button
+              type="button"
+              onClick={handleRemoveImage}
+              disabled={busy}
+              className="mt-3 rounded-lg bg-gray-700 px-4 py-2 font-semibold text-white hover:bg-gray-800 disabled:opacity-50"
+            >
+              Remove Image
+            </button>
+          </div>
+        )}
       </div>
 
       <div>

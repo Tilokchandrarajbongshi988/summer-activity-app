@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CampImage from "../components/CampImage";
 import useBookCamp from "../Guest hooks/useBookCamp";
 import useGetCampDetails from "../Guest hooks/useGetCampdetails";
 import useGetGuestCamps from "../Guest hooks/useGetGuestCamps";
@@ -62,18 +63,29 @@ const CampList = () => {
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {camps.map((camp) => (
-            <div key={camp._id} className="rounded-xl bg-white p-6 shadow">
-              <h3 className="text-xl font-semibold">{camp.activityName}</h3>
-              <p className="mt-2 text-gray-600">Location: {camp.location}</p>
-              <p className="mt-1 text-gray-600">Price: ₹{camp.price}</p>
+            <div
+              key={camp._id}
+              className="overflow-hidden rounded-xl bg-white shadow"
+            >
+              <CampImage
+                src={camp.photo}
+                alt={camp.activityName}
+                className="h-44 w-full"
+              />
 
-              <button
-                type="button"
-                onClick={() => handleViewDetails(camp._id)}
-                className="mt-4 rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700"
-              >
-                View Details
-              </button>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold">{camp.activityName}</h3>
+                <p className="mt-2 text-gray-600">Location: {camp.location}</p>
+                <p className="mt-1 text-gray-600">Price: ₹{camp.price}</p>
+
+                <button
+                  type="button"
+                  onClick={() => handleViewDetails(camp._id)}
+                  className="mt-4 rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700"
+                >
+                  View Details
+                </button>
+              </div>
             </div>
           ))}
         </div>
@@ -81,7 +93,7 @@ const CampList = () => {
 
       {detailsOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
-          <div className="w-full max-w-2xl rounded-2xl bg-white p-6 shadow-2xl">
+          <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl">
             <div className="flex items-start justify-between gap-4">
               <h2 className="text-2xl font-bold">Camp Details</h2>
 
@@ -102,6 +114,13 @@ const CampList = () => {
 
             {!loadingDetails && selectedCamp && (
               <div className="mt-6 space-y-4">
+                <CampImage
+                  src={selectedCamp.photo}
+                  alt={selectedCamp.activityName}
+                  className="h-64 w-full"
+                  rounded="rounded-xl"
+                />
+
                 <div>
                   <h3 className="text-2xl font-semibold">
                     {selectedCamp.activityName}

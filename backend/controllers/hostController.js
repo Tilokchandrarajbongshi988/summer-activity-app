@@ -1,4 +1,33 @@
 const Camp = require("../models/camp");
+const Booking = require("../models/bookings");
+const User = require("../models/user");
+
+const MAX_IMAGE_SIZE = 1024 * 1024;
+const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png"];
+
+const validateCampPhoto = (photo) => {
+  if (!photo) {
+    return null;
+  }
+
+  const match = photo.match(/^data:(image\/jpeg|image\/png);base64,(.+)$/);
+
+  if (!match) {
+    return "Only JPG and PNG images are allowed";
+  }
+
+  const imageSize = Buffer.byteLength(match[2], "base64");
+
+  if (imageSize > MAX_IMAGE_SIZE) {
+    return "Image must be 1 MB or smaller";
+  }
+
+  if (!ALLOWED_IMAGE_TYPES.includes(match[1])) {
+    return "Only JPG and PNG images are allowed";
+  }
+
+  return null;
+};
 
 exports.createCamp = async (req, res, next) => {
   try {
@@ -10,6 +39,14 @@ exports.createCamp = async (req, res, next) => {
       });
     }
     const { activityName, description, price, location, photo } = req.body;
+    const photoError = validateCampPhoto(photo);
+
+    if (photoError) {
+      return res.status(400).json({
+        error: photoError,
+      });
+    }
+
     const camp = await Camp.create({
       activityName,
       description,
@@ -72,6 +109,14 @@ exports.getCampById = async (req, res) => {
 
 exports.updateCamp = async (req, res) => {
   try {
+    const photoError = validateCampPhoto(req.body.photo);
+
+    if (photoError) {
+      return res.status(400).json({
+        error: photoError,
+      });
+    }
+
     const updatedCamp = await Camp.findOneAndUpdate(
       {
         _id: req.params.campId,
@@ -102,10 +147,6 @@ exports.updateCamp = async (req, res) => {
 
 exports.deleteCamp = async (req, res) => {
   try {
-
-    console.log("req.params =", req.params);
-    console.log("campId =", req.params.campId);
-    console.log("typeof =", typeof req.params.campId);
     const camp = await Camp.findById(req.params.campId);
     if (!camp) {
       return res.status(404).json({
@@ -118,6 +159,21 @@ exports.deleteCamp = async (req, res) => {
         error: "Unauthorized",
       });
     }
+
+    await Booking.deleteMany({
+      camp: camp._id,
+    });
+
+    await User.updateMany(
+      {
+        favourites: camp._id,
+      },
+      {
+        $pull: {
+          favourites: camp._id,
+        },
+      }
+    );
 
     await Camp.findByIdAndDelete(req.params.campId);
 

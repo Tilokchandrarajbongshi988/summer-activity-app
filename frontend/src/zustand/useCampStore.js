@@ -39,6 +39,13 @@ const useCampStore = create((set) => ({
       camps: state.camps.filter((camp) => camp._id !== id),
       hostCamps: state.hostCamps.filter((camp) => camp._id !== id),
       selectedCamp: state.selectedCamp?._id === id ? null : state.selectedCamp,
+      favorites: state.favorites.filter((camp) => camp._id !== id),
+      bookings: state.bookings.filter((booking) => {
+        const bookingCampId =
+          typeof booking.camp === "string" ? booking.camp : booking.camp?._id;
+
+        return bookingCampId !== id;
+      }),
     })),
 
   setFavorites: (favorites) => set({ favorites }),

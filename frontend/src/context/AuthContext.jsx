@@ -1,7 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
-import AuthContext from "./AuthContextObject";
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useCallback, useEffect, useState } from "react";
 import { logout as logoutRequest } from "../services/authService";
 import useCampStore from "../zustand/useCampStore";
+
+export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
