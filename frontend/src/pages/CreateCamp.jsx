@@ -1,80 +1,36 @@
-import { useState } from "react";
-import { createCamp } from "../services/hostService"
+// pages/CreateCamp.jsx
 import { useNavigate } from "react-router-dom";
+import useCreateCamp from "../Host hooks/useCreateCamp";
+import CampForm from "../components/CampForm";
 
 const CreateCamp = () => {
-  const [activityName, setActivityName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [location, setLocation] = useState("");
-
+  const { createCamp, loading } = useCreateCamp();
   const navigate = useNavigate();
 
-  const handleCreateCamp = async (e) => {
-    e.preventDefault();
+  const handleCreate = async (form) => {
+    const result = await createCamp(form);
 
-    try {
-      const formData = {
-        activityName,
-        description,
-        price,
-        location,
-      }
-      console.log(formData);
-      const data = await createCamp(formData);
-      console.log(data);
-      if (!data.error) {
-        navigate("/host/my-camps");
-      }
-    } catch (error) {
-      console.log(error);
+    if (result) {
+      navigate("/host/my-camps");
     }
-  }
+  };
 
   return (
-    <form onSubmit={handleCreateCamp}>
-      <div>
-        <label>Activity Name</label>
-        <input
-          type="text"
-          value={activityName}
-          onChange={(e) => setActivityName(e.target.value)}
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+      <div className="w-full max-w-2xl bg-white rounded-xl shadow-lg p-8">
+        <h1 className="text-3xl font-bold text-center mb-8">
+          Create New Camp
+        </h1>
+
+        <CampForm
+          onSubmit={handleCreate}
+          submitting={loading}
+          submitLabel="Create Camp"
+          submittingLabel="Creating..."
         />
       </div>
-
-      <div>
-        <label>Description</label>
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </div>
-
-      <div>
-        <label>Price</label>
-        <input
-          type="number"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-      </div>
-
-      <div>
-        <label>Location</label>
-        <input
-          type="text"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-        />
-      </div>
-
-      <button type="submit">
-        Create Camp
-      </button>
-    </form>
+    </div>
   );
 };
-
 
 export default CreateCamp;

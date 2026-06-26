@@ -1,60 +1,31 @@
-import { useEffect, useState } from "react";
+// pages/AllCamps.jsx
 import { useNavigate } from "react-router-dom";
+import useGetGuestCamps from "../Guest hooks/useGetGuestCamps";
+import useGetCampDetails from "../Guest hooks/useGetCampdetails";
 
-const CampList = () => {
-  const [camps, setCamps] = useState([]);
-  const [loading, setLoading] = useState(true);
+const Camplist = () => {
+  const { camps, loading } = useGetCamps();
+  const { fetchCampDetails } = useGetCampDetails();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchCamps = async () => {
-      try {
-        const res = await fetch("http://localhost:5000/api/guest", {
-          credentials: "include",
-        });
-
-        const data = await res.json();
-        setCamps(data);
-      } catch (error) {
-        console.log("Error fetching camps:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCamps();
-  }, []);
-
-  if (loading) {
-    return <p>Loading camps...</p>;
-  }
-
-  if (camps.length === 0) {
-    return <p>No camps available.</p>;
-  }
+  if (loading) return <p>Loading...</p>;
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div>
       <h1>All Camps</h1>
 
       {camps.map((camp) => (
-        <div
-          key={camp._id}
-          style={{
-            border: "1px solid #ccc",
-            padding: "15px",
-            marginBottom: "10px",
-            borderRadius: "10px",
-          }}
-        >
-          <h3>{camp.activityName}</h3>
-          <p>{camp.description}</p>
-          <p><strong>Location:</strong> {camp.location}</p>
-          <p><strong>Price:</strong> ₹{camp.price}</p>
-          <p><strong>Host:</strong> {camp.host?.fullName}</p>
+        <div key={camp._id} style={{ border: "1px solid gray", margin: 10 }}>
+          <h3>{camp.title}</h3>
+          <p>Location: {camp.location}</p>
+
+          {/* ❌ NO description here */}
 
           <button
-            onClick={() => navigate(`/camp/${camp._id}`)}
+            onClick={() => {
+              fetchCampDetails(camp._id);
+              navigate(`/camp/${camp._id}`);
+            }}
           >
             View Details
           </button>
@@ -64,4 +35,4 @@ const CampList = () => {
   );
 };
 
-export default CampList;
+export default Camplist;

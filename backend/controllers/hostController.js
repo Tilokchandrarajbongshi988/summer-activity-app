@@ -44,6 +44,32 @@ exports.getMyCamps = async (req, res) => {
     });
   }
 };
+
+exports.getCampById = async (req, res) => {
+  try {
+
+    const camp = await Camp.findOne({
+      _id: req.params.campId,
+      host: req.user._id,
+    });
+
+    if (!camp) {
+      return res.status(404).json({
+        error: "Camp not found",
+      });
+    }
+
+    res.status(200).json(camp);
+
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      error: "Internal server error",
+    });
+  }
+};
+
 exports.updateCamp = async (req, res) => {
   try {
     const updatedCamp = await Camp.findOneAndUpdate(
@@ -76,8 +102,11 @@ exports.updateCamp = async (req, res) => {
 
 exports.deleteCamp = async (req, res) => {
   try {
-    const camp = await Camp.findById(req.params.campId);
 
+    console.log("req.params =", req.params);
+    console.log("campId =", req.params.campId);
+    console.log("typeof =", typeof req.params.campId);
+    const camp = await Camp.findById(req.params.campId);
     if (!camp) {
       return res.status(404).json({
         error: "Camp not found",

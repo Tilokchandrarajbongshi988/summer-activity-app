@@ -4,13 +4,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthPage from "./pages/AuthPage";
 import GuestDashboard from "./pages/GuestDashboard";
 import CampList from "./pages/CampList";
-// import CampDetails from "./pages/CampDetails";
-// import Favorites from "./pages/Favorites";
-// import MyBookings from "./pages/MyBookings"
+import CampDetails from "./pages/CampDetails";
+import Favorites from "./pages/Favorites";
+import MyBookings from "./pages/Bookings"
 
 import HostDashboard from "./pages/HostDashboard";
 import CreateCamp from "./pages/CreateCamp";
-import MyCamps from "./pages/MyCamps";
+import HostCamps from "./pages/HostCamps";
 import EditCamp from "./pages/EditCamp";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute"
@@ -32,7 +32,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-{/* 
+
           <Route
             path="/favorites"
             element={
@@ -40,20 +40,20 @@ function App() {
                 <Favorites />
               </ProtectedRoute>
             }
-          /> */}
+          />
 
-          {/* <Route
+          <Route
             path="/bookings"
             element={
               <ProtectedRoute role="guest">
                 <MyBookings />
               </ProtectedRoute>
             }
-          /> */}
+          />
 
           {/* Public Camps */}
           <Route path="/camps" element={<CampList />} />
-          {/* <Route path="/camp/:campId" element={<CampDetails />} /> */}
+          <Route path="/camp/:campId" element={<CampDetails />} />
 
           {/* Host Protected Routes */}
           <Route
@@ -78,7 +78,7 @@ function App() {
             path="/host/my-camps"
             element={
               <ProtectedRoute role="host">
-                <MyCamps />
+                <HostCamps />
               </ProtectedRoute>
             }
           />

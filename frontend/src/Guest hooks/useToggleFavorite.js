@@ -1,0 +1,44 @@
+import { useState } from "react";
+import toast from "react-hot-toast";
+import useCampStore from "../zustand/useCampStore";
+
+const useToggleFavorite = () => {
+  const [loading, setLoading] = useState(false);
+
+  const setFavorites = useCampStore((state) => state.setFavorites);
+
+  const toggleFavorite = async (campId) => {
+    setLoading(true);
+
+    try {
+      const res = await fetch(
+        `http://localhost:5000/api/favourites/${campId}`,
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      );
+
+      const data = await res.json();
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      setFavorites(data.favourites);
+
+      toast.success("Favorites updated");
+
+      return data.favourites;
+    } catch (err) {
+      toast.error(err.message);
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { toggleFavorite, loading };
+};
+
+export default useToggleFavorite;

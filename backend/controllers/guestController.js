@@ -19,6 +19,7 @@ exports.getAllCamps = async (req, res) => {
 exports.getCampDetails = async (req, res) => {
   try {
 
+    const {campId}= req.params;
     const camp = await Camp.findById(req.params.campId)
       .populate("host", "fullName");
 

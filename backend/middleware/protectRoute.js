@@ -1,9 +1,11 @@
 const jwt = require("jsonwebtoken");
-const User =require("../models/user");
+const User = require("../models/user");
 
 const protectRoute = async (req, res, next) => {
   try {
     const token = req.cookies.jwt;
+    console.log("Cookies:", req.cookies);
+    console.log("Token:", token);
     if (!token) {
       return res.status(401).json({ error: "Unauthorized-No Token Provided" });
     }
@@ -17,9 +19,12 @@ const protectRoute = async (req, res, next) => {
     next()
 
   } catch (error) {
-    console.log("error in protectRoute middleware: ", error.message);
-    res.status(500).json({ error: "internal server error" });
+    console.log("JWT ERROR:", error.message);
+
+    return res.status(401).json({
+      error: "Unauthorized - Invalid Token",
+    });
   }
 }
-module.exports=protectRoute;
+module.exports = protectRoute;
 

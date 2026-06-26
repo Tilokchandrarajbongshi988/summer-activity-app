@@ -18,7 +18,6 @@ exports.getFavourites = async (req, res) => {
 
 exports.toggleFavourite = async (req, res) => {
   try {
-
     const user = await User.findById(req.user._id);
 
     const campId = req.params.campId;
@@ -27,26 +26,24 @@ exports.toggleFavourite = async (req, res) => {
 
     if (!camp) {
       return res.status(404).json({
-        error: "Camp not found"
+        error: "Camp not found",
       });
     }
 
     const alreadyFavourite = user.favourites.includes(campId);
 
     if (alreadyFavourite) {
-
       user.favourites.pull(campId);
-
     } else {
-
       user.favourites.push(campId);
-
     }
 
     await user.save();
 
+    const updatedUser = await User.findById(req.user._id).populate("favourites");
+
     res.status(200).json({
-      favourites: user.favourites,
+      favourites: updatedUser.favourites,
     });
 
   } catch (error) {
