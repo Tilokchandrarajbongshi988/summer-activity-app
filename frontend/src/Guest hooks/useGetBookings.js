@@ -12,7 +12,7 @@ const useGetBookings = () => {
       setLoading(true);
       try {
         const res = await fetch(
-          "http://localhost:5000/api/bookings",
+          "/api/bookings",
           {
             credentials: "include",
           }

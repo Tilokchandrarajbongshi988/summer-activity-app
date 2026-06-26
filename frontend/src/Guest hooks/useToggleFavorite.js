@@ -12,7 +12,7 @@ const useToggleFavorite = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/favourites/${campId}`,
+        `/api/favourites/${campId}`,
         {
           method: "POST",
           credentials: "include",

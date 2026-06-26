@@ -13,7 +13,7 @@ const useGetCampById = (campId) => {
       setLoading(true);
       try {
         const res = await fetch(
-          `http://localhost:5000/api/host/camp/${campId}`,
+          `/api/host/camp/${campId}`,
           {
             credentials: "include",
           }

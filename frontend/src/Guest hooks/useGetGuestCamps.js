@@ -11,7 +11,7 @@ const useGetGuestCamps = () => {
     const fetchCamps = async () => {
       setLoading(true);
       try {
-        const res = await fetch("http://localhost:5000/api/guest", {
+        const res = await fetch("/api/guest", {
           credentials: "include",
         });
 

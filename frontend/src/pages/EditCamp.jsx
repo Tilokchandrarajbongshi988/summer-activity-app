@@ -3,6 +3,8 @@ import useUpdateCamp from "../Host hooks/useUpdateCamp";
 import useDeleteCamp from "../Host hooks/useDeleteCamp";
 import useGetCampById from "../Host hooks/useGetCampById";
 import CampForm from "../components/CampForm";
+import LoadingSpinner from "../components/LoadingSpinner";
+import SunnyPage from "../components/SunnyPage";
 
 const EditCamp = () => {
   const { campId } = useParams();
@@ -29,17 +31,30 @@ const EditCamp = () => {
   };
 
   if (loading && !camp) {
-    return <p>Loading...</p>;
+    return (
+      <SunnyPage>
+        <LoadingSpinner text="Loading camp..." />
+      </SunnyPage>
+    );
   }
 
   if (!camp) {
-    return <p>Camp not found.</p>;
+    return (
+      <SunnyPage>
+        <p className="rounded-2xl bg-white/60 p-6 text-orange-950 shadow">
+          Camp not found.
+        </p>
+      </SunnyPage>
+    );
   }
 
   return (
-    <div>
-      <h1>Edit Camp</h1>
-
+    <SunnyPage
+      title="Edit Camp"
+      subtitle="Update the camp details, image, or remove the camp."
+      maxWidth="max-w-3xl"
+    >
+      <div className="rounded-[2rem] border border-white/60 bg-white/75 p-8 shadow-xl backdrop-blur-md">
       <CampForm
         key={camp._id}
         initialValues={camp}
@@ -48,7 +63,8 @@ const EditCamp = () => {
         submitting={updating}
         deleting={deleting}
       />
-    </div>
+      </div>
+    </SunnyPage>
   );
 };
 

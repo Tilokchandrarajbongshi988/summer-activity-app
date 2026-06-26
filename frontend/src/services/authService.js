@@ -1,6 +1,6 @@
 export const signUp = async (formData) => {
   const response = await fetch(
-    "http://localhost:5000/api/auth/signup",
+    "/api/auth/signup",
     {
       method: "POST",
       headers: {
@@ -16,7 +16,7 @@ export const signUp = async (formData) => {
 
 export const login = async (formData) => {
   const response = await fetch(
-    "http://localhost:5000/api/auth/login",
+    "/api/auth/login",
     {
       method: "POST",
       headers: {
@@ -32,7 +32,7 @@ export const login = async (formData) => {
 
 export const logout = async () => {
   const response = await fetch(
-    "http://localhost:5000/api/auth/logout",
+    "/api/auth/logout",
     {
       method: "POST",
       credentials: "include",

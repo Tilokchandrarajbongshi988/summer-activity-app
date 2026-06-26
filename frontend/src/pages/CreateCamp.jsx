@@ -1,7 +1,8 @@
 // pages/CreateCamp.jsx
 import { useNavigate } from "react-router-dom";
-import useCreateCamp from "../Host hooks/useCreateCamp";
 import CampForm from "../components/CampForm";
+import SunnyPage from "../components/SunnyPage";
+import useCreateCamp from "../Host hooks/useCreateCamp";
 
 const CreateCamp = () => {
   const { createCamp, loading } = useCreateCamp();
@@ -16,12 +17,12 @@ const CreateCamp = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
-      <div className="w-full max-w-2xl bg-white rounded-xl shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-center mb-8">
-          Create New Camp
-        </h1>
-
+    <SunnyPage
+      title="Create New Camp"
+      subtitle="Add a bright summer activity for guests to discover."
+      maxWidth="max-w-3xl"
+    >
+      <div className="rounded-[2rem] border border-white/60 bg-white/75 p-8 shadow-xl backdrop-blur-md">
         <CampForm
           onSubmit={handleCreate}
           submitting={loading}
@@ -29,7 +30,7 @@ const CreateCamp = () => {
           submittingLabel="Creating..."
         />
       </div>
-    </div>
+    </SunnyPage>
   );
 };
 

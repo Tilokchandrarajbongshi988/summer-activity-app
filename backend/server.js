@@ -2,6 +2,7 @@
 const express = require('express');
 const dotenv = require("dotenv");
 const cors = require("cors");
+const path = require("path");
 
 dotenv.config();
 //internal module
@@ -15,6 +16,7 @@ const connectToMongoDB = require("./MongoConnect/connectToMongoDb");
 const cookieParser = require("cookie-parser");
 
 const PORT = process.env.PORT || 5000;
+const _dirname = path.resolve();
 
 
 
@@ -36,6 +38,12 @@ app.use("/api/guest", guestRou);
 app.use("/api/bookings", bookingRou);
 app.use("/api/favourites", favouriteRou);
 app.use("/api/host", hostRou);
+
+app.use(express.static(path.join(_dirname, "frontend", "dist")));
+
+app.get("/{*splat}", (req, res) => {
+  res.sendFile(path.join(_dirname, "frontend", "dist", "index.html"));
+});
 
 
 app.listen(PORT, () => {

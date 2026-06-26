@@ -1,10 +1,10 @@
 const CampImage = ({ src, alt, className = "h-44", rounded = "" }) => {
-  const frameClassName = `relative overflow-hidden bg-gray-100 ${className} ${rounded}`;
+  const frameClassName = `relative overflow-hidden bg-orange-100 ${className} ${rounded}`;
 
   if (!src) {
     return (
       <div
-        className={`flex items-center justify-center bg-gray-200 text-gray-500 ${className} ${rounded}`}
+        className={`flex items-center justify-center bg-orange-100 font-semibold text-orange-700 ${className} ${rounded}`}
       >
         No image
       </div>

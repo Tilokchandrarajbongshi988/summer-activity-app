@@ -12,7 +12,7 @@ const useGetCampDetails = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `http://localhost:5000/api/guest/camps/${campId}`,
+        `/api/guest/camps/${campId}`,
         {
           credentials: "include",
         }

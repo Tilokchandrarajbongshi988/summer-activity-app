@@ -16,6 +16,8 @@
   },
   "scripts": {
     "start": "node backend/server.js",
-    "dev": "nodemon server.js"
+    "server": "nodemon backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   }
 }

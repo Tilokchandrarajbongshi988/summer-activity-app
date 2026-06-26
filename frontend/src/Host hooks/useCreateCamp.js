@@ -13,7 +13,7 @@ const useCreateCamp = () => {
 
     try {
       const res = await fetch(
-        "http://localhost:5000/api/host/createcamp",
+        "/api/host/createcamp",
         {
           method: "POST",
           headers: {

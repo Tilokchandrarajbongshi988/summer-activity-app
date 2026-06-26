@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Navigate } from "react-router-dom";
+import LoadingSpinner from "./LoadingSpinner";
 
 const ProtectedRoute = ({ children, role }) => {
   const { user, loading } = useContext(AuthContext);
@@ -8,7 +9,7 @@ const ProtectedRoute = ({ children, role }) => {
   console.log("ProtectedRoute loading:", loading);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <LoadingSpinner text="Checking your session..." />;
   }
 
   if (!user) {

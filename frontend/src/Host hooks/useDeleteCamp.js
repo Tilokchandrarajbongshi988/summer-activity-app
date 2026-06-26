@@ -9,7 +9,7 @@ const useDeleteCamp = () => {
   const deleteCamp = async (campId) => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/host/camp/${campId}`, {
+      const res = await fetch(`/api/host/camp/${campId}`, {
         
         method: "DELETE",
         credentials: "include",

@@ -4,6 +4,9 @@ import CampImage from "./CampImage";
 const MAX_IMAGE_SIZE = 1024 * 1024;
 const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png"];
 
+const inputClassName =
+  "w-full rounded-xl border border-orange-200 bg-white/80 px-4 py-3 text-orange-950 outline-none placeholder:text-orange-300 focus:ring-2 focus:ring-orange-400";
+
 const CampForm = ({
   initialValues = {},
   onSubmit,
@@ -80,7 +83,7 @@ const CampForm = ({
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <label className="block text-sm font-medium mb-2">
+        <label className="mb-2 block text-sm font-bold text-orange-950">
           Activity Name
         </label>
         <input
@@ -88,12 +91,12 @@ const CampForm = ({
           value={form.activityName}
           onChange={handleChange}
           placeholder="Football Camp"
-          className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className={inputClassName}
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-2">
+        <label className="mb-2 block text-sm font-bold text-orange-950">
           Location
         </label>
         <input
@@ -101,12 +104,12 @@ const CampForm = ({
           value={form.location}
           onChange={handleChange}
           placeholder="Delhi"
-          className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className={inputClassName}
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-2">
+        <label className="mb-2 block text-sm font-bold text-orange-950">
           Price (₹)
         </label>
         <input
@@ -115,12 +118,12 @@ const CampForm = ({
           value={form.price}
           onChange={handleChange}
           placeholder="5000"
-          className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className={inputClassName}
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-2">
+        <label className="mb-2 block text-sm font-bold text-orange-950">
           Camp Image
         </label>
 
@@ -129,15 +132,17 @@ const CampForm = ({
           accept="image/jpeg,image/png"
           onChange={handleImageChange}
           disabled={busy}
-          className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className={inputClassName}
         />
 
-        <p className="mt-2 text-sm text-gray-500">
+        <p className="mt-2 text-sm text-orange-800">
           JPG or PNG only. Maximum size: 1 MB.
         </p>
 
         {imageError && (
-          <p className="mt-2 text-sm text-red-600">{imageError}</p>
+          <p className="mt-2 text-sm font-semibold text-red-600">
+            {imageError}
+          </p>
         )}
 
         {form.photo && (
@@ -145,15 +150,15 @@ const CampForm = ({
             <CampImage
               src={form.photo}
               alt="Camp preview"
-              className="h-48 w-full"
-              rounded="rounded-xl"
+              className="h-56 w-full"
+              rounded="rounded-2xl"
             />
 
             <button
               type="button"
               onClick={handleRemoveImage}
               disabled={busy}
-              className="mt-3 rounded-lg bg-gray-700 px-4 py-2 font-semibold text-white hover:bg-gray-800 disabled:opacity-50"
+              className="mt-3 rounded-full bg-orange-900 px-5 py-2.5 font-bold text-white hover:bg-orange-950 disabled:opacity-50"
             >
               Remove Image
             </button>
@@ -162,7 +167,7 @@ const CampForm = ({
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-2">
+        <label className="mb-2 block text-sm font-bold text-orange-950">
           Description
         </label>
         <textarea
@@ -171,14 +176,14 @@ const CampForm = ({
           value={form.description}
           onChange={handleChange}
           placeholder="Describe your camp..."
-          className="w-full border rounded-lg px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className={`${inputClassName} resize-none`}
         />
       </div>
 
       <button
         type="submit"
         disabled={busy}
-        className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50"
+        className="flex w-full items-center justify-center gap-2 rounded-full bg-orange-600 py-3 font-bold text-white shadow-lg transition hover:bg-orange-700 disabled:opacity-50"
       >
         {submitting ? submittingLabel : submitLabel}
       </button>
@@ -188,7 +193,7 @@ const CampForm = ({
           type="button"
           onClick={onDelete}
           disabled={busy}
-          className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition disabled:opacity-50"
+          className="flex w-full items-center justify-center gap-2 rounded-full bg-red-600 py-3 font-bold text-white shadow-lg transition hover:bg-red-700 disabled:opacity-50"
         >
           {deleting ? "Deleting..." : "Delete Camp"}
         </button>

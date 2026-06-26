@@ -12,7 +12,7 @@ const useGetFavorites = () => {
       setLoading(true);
       try {
         const res = await fetch(
-          "http://localhost:5000/api/favourites",
+          "/api/favourites",
           {
             credentials: "include",
           }
