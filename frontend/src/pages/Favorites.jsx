@@ -1,8 +1,14 @@
 import CampImage from "../components/CampImage";
 import useGetFavorites from "../Guest hooks/useGetFavorites";
+import useToggleFavorite from "../Guest hooks/useToggleFavorite";
 
 const Favorites = () => {
   const { favorites, loading } = useGetFavorites();
+  const { toggleFavorite, loading: removingFavorite } = useToggleFavorite();
+
+  const handleRemoveFavorite = async (campId) => {
+    await toggleFavorite(campId);
+  };
 
   if (loading) {
     return <p>Loading...</p>;
@@ -33,6 +39,15 @@ const Favorites = () => {
                 <h3 className="text-xl font-semibold">{camp.activityName}</h3>
                 <p className="mt-2 text-gray-600">Location: {camp.location}</p>
                 <p className="mt-1 text-gray-600">Price: ₹{camp.price}</p>
+
+                <button
+                  type="button"
+                  onClick={() => handleRemoveFavorite(camp._id)}
+                  disabled={removingFavorite}
+                  className="mt-4 rounded-lg bg-red-600 px-4 py-2 font-semibold text-white hover:bg-red-700 disabled:opacity-50"
+                >
+                  {removingFavorite ? "Removing..." : "Remove Favorite"}
+                </button>
               </div>
             </div>
           ))}

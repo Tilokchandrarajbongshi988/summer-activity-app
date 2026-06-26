@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 
 import AuthPage from "./pages/AuthPage";
@@ -20,6 +21,7 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <Toaster position="top-center" />
         <Navbar />
         <Routes>
           {/* Public Route */}

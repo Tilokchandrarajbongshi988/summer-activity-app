@@ -4,16 +4,48 @@ const bcrypt =require("bcrypt");
 
 const generateTokenAndSetCookie = require("../utils/geneWebToken");
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MIN_PASSWORD_LENGTH = 6;
+const USER_TYPES = ["guest", "host"];
+
+const isValidEmail = (email) => EMAIL_REGEX.test(email.trim());
+
 
 exports.postSignUp = async (req, res, next) => {
   try {
     const { fullName, email, password, confirmPassword, userType} = req.body;
     console.log(req.body);
 
+    if (!fullName?.trim()) {
+      return res.status(400).json({ error: "Full name is required" });
+    }
+
+    if (!email?.trim()) {
+      return res.status(400).json({ error: "Email is required" });
+    }
+
+    if (!isValidEmail(email)) {
+      return res.status(400).json({ error: "Please enter a valid email address" });
+    }
+
+    if (!password) {
+      return res.status(400).json({ error: "Password is required" });
+    }
+
+    if (password.length < MIN_PASSWORD_LENGTH) {
+      return res.status(400).json({ error: "Password must be at least 6 characters" });
+    }
+
     if (password !== confirmPassword) {
       return res.status(400).json({ error: "passwords don't match" })
     }
-    const user = await User.findOne({ email })
+
+    if (!USER_TYPES.includes(userType)) {
+      return res.status(400).json({ error: "Please select guest or host" });
+    }
+
+    const normalizedEmail = email.trim().toLowerCase();
+    const user = await User.findOne({ email: normalizedEmail })
 
     if (user) {
       return res.status(400).json({ error: "email already exists" })
@@ -23,8 +55,8 @@ exports.postSignUp = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = new User({
-      fullName,
-      email,
+      fullName: fullName.trim(),
+      email: normalizedEmail,
       password: hashedPassword,
       userType
     });
@@ -51,7 +83,25 @@ exports.postLogin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     console.log(email,password);
-    const user = await User.findOne({ email });
+
+    if (!email?.trim()) {
+      return res.status(400).json({ error: "Email is required" });
+    }
+
+    if (!isValidEmail(email)) {
+      return res.status(400).json({ error: "Please enter a valid email address" });
+    }
+
+    if (!password) {
+      return res.status(400).json({ error: "Password is required" });
+    }
+
+    if (password.length < MIN_PASSWORD_LENGTH) {
+      return res.status(400).json({ error: "Password must be at least 6 characters" });
+    }
+
+    const normalizedEmail = email.trim().toLowerCase();
+    const user = await User.findOne({ email: normalizedEmail });
     const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
     console.log(isPasswordCorrect)
     if (!user || !isPasswordCorrect) {
