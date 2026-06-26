@@ -59,7 +59,7 @@ const CampList = () => {
   if (!loadingCamps && camps.length === 0) {
     return (
       <SunnyPage title="All Camps">
-        <p className="rounded-xl border border-gray-200 bg-white p-6 text-gray-700 shadow-sm">
+        <p className="rounded-xl border-2 border-black bg-white p-6 text-black">
           No camps available.
         </p>
       </SunnyPage>
@@ -78,7 +78,7 @@ const CampList = () => {
         {camps.map((camp) => (
           <div
             key={camp._id}
-            className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:border-gray-300 hover:shadow-md"
+            className="overflow-hidden rounded-xl border-2 border-black bg-white transition hover:bg-yellow-50"
           >
             <CampImage
               src={camp.photo}
@@ -87,18 +87,18 @@ const CampList = () => {
             />
 
             <div className="p-6">
-              <h3 className="text-2xl font-bold text-gray-900">
+              <h3 className="text-2xl font-bold text-black">
                 {camp.activityName}
               </h3>
-              <p className="mt-3 text-gray-600">Location: {camp.location}</p>
-              <p className="mt-1 font-medium text-gray-700">
+              <p className="mt-3 text-black/70">Location: {camp.location}</p>
+              <p className="mt-1 font-medium text-black">
                 Price: Rs. {camp.price}
               </p>
 
               <button
                 type="button"
                 onClick={() => handleViewDetails(camp._id)}
-                className="mt-6 rounded-lg bg-gray-900 px-5 py-2.5 font-semibold text-white hover:bg-gray-800"
+                className="mt-6 rounded-lg bg-black px-5 py-2.5 font-semibold text-white hover:bg-black/80"
               >
                 View Details
               </button>
@@ -109,25 +109,25 @@ const CampList = () => {
 
       {detailsOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
-          <div className="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl border border-gray-200 bg-white p-6 shadow-lg">
-            <div className="flex items-start justify-between gap-4 border-b border-gray-200 pb-4">
-              <h2 className="text-3xl font-bold text-gray-900">
+          <div className="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl border-2 border-black bg-white p-6">
+            <div className="flex items-start justify-between gap-4 border-b-2 border-black pb-4">
+              <h2 className="text-3xl font-bold text-black">
                 Camp Details
               </h2>
 
               <button
                 type="button"
                 onClick={() => setDetailsOpen(false)}
-                className="rounded-lg px-3 py-1 text-2xl text-gray-500 hover:bg-gray-100"
+                className="rounded-lg px-3 py-1 text-2xl text-black hover:bg-yellow-200"
               >
-                ×
+                &times;
               </button>
             </div>
 
             {loadingDetails && <LoadingSpinner text="Loading details..." />}
 
             {!loadingDetails && !selectedCamp && (
-              <p className="mt-6 text-gray-700">
+              <p className="mt-6 text-black">
                 Could not load camp details.
               </p>
             )}
@@ -142,18 +142,18 @@ const CampList = () => {
                 />
 
                 <div>
-                  <h3 className="text-3xl font-bold text-gray-900">
+                  <h3 className="text-3xl font-bold text-black">
                     {selectedCamp.activityName}
                   </h3>
-                  <p className="mt-2 text-gray-600">
+                  <p className="mt-2 text-black/70">
                     Location: {selectedCamp.location}
                   </p>
-                  <p className="font-medium text-gray-700">
+                  <p className="font-medium text-black">
                     Price: Rs. {selectedCamp.price}
                   </p>
                 </div>
 
-                <p className="rounded-xl border border-gray-200 bg-gray-50 p-5 text-gray-700">
+                <p className="rounded-xl border-2 border-black bg-yellow-100 p-5 text-black">
                   {selectedCamp.description || "No description available."}
                 </p>
 
@@ -162,7 +162,7 @@ const CampList = () => {
                     type="button"
                     onClick={handleBook}
                     disabled={actionLoading}
-                    className="flex items-center justify-center gap-2 rounded-lg bg-gray-900 px-5 py-2.5 font-semibold text-white hover:bg-gray-800 disabled:opacity-50"
+                    className="flex items-center justify-center gap-2 rounded-lg bg-black px-5 py-2.5 font-semibold text-white hover:bg-black/80 disabled:opacity-50"
                   >
                     {bookingCamp ? "Booking..." : "Book"}
                   </button>
@@ -171,7 +171,7 @@ const CampList = () => {
                     type="button"
                     onClick={handleFavorite}
                     disabled={actionLoading}
-                    className="flex items-center justify-center gap-2 rounded-lg border border-gray-300 px-5 py-2.5 font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+                    className="flex items-center justify-center gap-2 rounded-lg border-2 border-black bg-yellow-300 px-5 py-2.5 font-semibold text-black hover:bg-yellow-200 disabled:opacity-50"
                   >
                     {updatingFavorite ? "Saving..." : "Favorite"}
                   </button>

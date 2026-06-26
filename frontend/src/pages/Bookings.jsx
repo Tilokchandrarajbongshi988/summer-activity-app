@@ -17,7 +17,7 @@ const Bookings = () => {
   if (!loading && bookings.length === 0) {
     return (
       <SunnyPage title="My Bookings">
-        <p className="rounded-xl border border-gray-200 bg-white p-6 text-gray-700 shadow-sm">
+        <p className="rounded-xl border-2 border-black bg-white p-6 text-black">
           No bookings yet.
         </p>
       </SunnyPage>
@@ -37,7 +37,7 @@ const Bookings = () => {
           return (
             <div
               key={booking._id}
-              className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm"
+              className="overflow-hidden rounded-xl border-2 border-black bg-white"
             >
               <CampImage
                 src={camp?.photo}
@@ -46,13 +46,13 @@ const Bookings = () => {
               />
 
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900">
+                <h3 className="text-xl font-bold text-black">
                   {camp?.activityName || "Camp"}
                 </h3>
-                <p className="mt-2 text-gray-600">
+                <p className="mt-2 text-black/70">
                   Location: {camp?.location || "Not available"}
                 </p>
-                <p className="mt-1 font-medium text-gray-700">
+                <p className="mt-1 font-medium text-black">
                   Price: {camp?.price ? `Rs. ${camp.price}` : "Not available"}
                 </p>
               </div>

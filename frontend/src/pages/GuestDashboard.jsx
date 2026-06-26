@@ -11,26 +11,26 @@ const GuestDashboard = () => {
       <div className="grid gap-6 sm:grid-cols-3">
         <Link
           to="/camps"
-          className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:border-gray-300 hover:shadow-md"
+          className="rounded-xl border-2 border-black bg-white p-6 hover:bg-yellow-50"
         >
-          <h2 className="text-2xl font-bold text-gray-900">All Camps</h2>
-          <p className="mt-2 text-gray-600">Browse every available camp.</p>
+          <h2 className="text-2xl font-bold text-black">All Camps</h2>
+          <p className="mt-2 text-black/70">Browse every available camp.</p>
         </Link>
 
         <Link
           to="/bookings"
-          className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:border-gray-300 hover:shadow-md"
+          className="rounded-xl border-2 border-black bg-white p-6 hover:bg-yellow-50"
         >
-          <h2 className="text-2xl font-bold text-gray-900">Bookings</h2>
-          <p className="mt-2 text-gray-600">View the camps you booked.</p>
+          <h2 className="text-2xl font-bold text-black">Bookings</h2>
+          <p className="mt-2 text-black/70">View the camps you booked.</p>
         </Link>
 
         <Link
           to="/favorites"
-          className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:border-gray-300 hover:shadow-md"
+          className="rounded-xl border-2 border-black bg-white p-6 hover:bg-yellow-50"
         >
-          <h2 className="text-2xl font-bold text-gray-900">Favorites</h2>
-          <p className="mt-2 text-gray-600">See your saved camps.</p>
+          <h2 className="text-2xl font-bold text-black">Favorites</h2>
+          <p className="mt-2 text-black/70">See your saved camps.</p>
         </Link>
       </div>
     </SunnyPage>

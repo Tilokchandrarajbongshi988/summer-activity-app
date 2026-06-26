@@ -5,7 +5,7 @@ const MAX_IMAGE_SIZE = 1024 * 1024;
 const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png"];
 
 const inputClassName =
-  "w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none placeholder:text-gray-400 focus:border-gray-500 focus:ring-1 focus:ring-gray-500";
+  "w-full rounded-lg border-2 border-black bg-white px-4 py-3 text-black outline-none placeholder:text-black/40 focus:ring-2 focus:ring-black";
 
 const CampForm = ({
   initialValues = {},
@@ -83,7 +83,7 @@ const CampForm = ({
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <label className="mb-2 block text-sm font-medium text-gray-800">
+        <label className="mb-2 block text-sm font-medium text-black">
           Activity Name
         </label>
         <input
@@ -96,7 +96,7 @@ const CampForm = ({
       </div>
 
       <div>
-        <label className="mb-2 block text-sm font-medium text-gray-800">
+        <label className="mb-2 block text-sm font-medium text-black">
           Location
         </label>
         <input
@@ -109,7 +109,7 @@ const CampForm = ({
       </div>
 
       <div>
-        <label className="mb-2 block text-sm font-medium text-gray-800">
+        <label className="mb-2 block text-sm font-medium text-black">
           Price (Rs.)
         </label>
         <input
@@ -123,7 +123,7 @@ const CampForm = ({
       </div>
 
       <div>
-        <label className="mb-2 block text-sm font-medium text-gray-800">
+        <label className="mb-2 block text-sm font-medium text-black">
           Camp Image
         </label>
 
@@ -135,12 +135,12 @@ const CampForm = ({
           className={inputClassName}
         />
 
-        <p className="mt-2 text-sm text-gray-500">
+        <p className="mt-2 text-sm text-black/70">
           JPG or PNG only. Maximum size: 1 MB.
         </p>
 
         {imageError && (
-          <p className="mt-2 text-sm font-semibold text-red-600">
+          <p className="mt-2 text-sm font-semibold text-black">
             {imageError}
           </p>
         )}
@@ -158,7 +158,7 @@ const CampForm = ({
               type="button"
               onClick={handleRemoveImage}
               disabled={busy}
-              className="mt-3 rounded-lg border border-gray-300 px-4 py-2 font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+              className="mt-3 rounded-lg border-2 border-black bg-yellow-300 px-4 py-2 font-medium text-black hover:bg-yellow-200 disabled:opacity-50"
             >
               Remove Image
             </button>
@@ -167,7 +167,7 @@ const CampForm = ({
       </div>
 
       <div>
-        <label className="mb-2 block text-sm font-medium text-gray-800">
+        <label className="mb-2 block text-sm font-medium text-black">
           Description
         </label>
         <textarea
@@ -183,7 +183,7 @@ const CampForm = ({
       <button
         type="submit"
         disabled={busy}
-        className="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-900 py-3 font-semibold text-white hover:bg-gray-800 disabled:opacity-50"
+        className="flex w-full items-center justify-center gap-2 rounded-lg bg-black py-3 font-semibold text-white hover:bg-black/80 disabled:opacity-50"
       >
         {submitting ? submittingLabel : submitLabel}
       </button>
@@ -193,7 +193,7 @@ const CampForm = ({
           type="button"
           onClick={onDelete}
           disabled={busy}
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-red-600 py-3 font-semibold text-white hover:bg-red-700 disabled:opacity-50"
+          className="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-black bg-white py-3 font-semibold text-black hover:bg-yellow-200 disabled:opacity-50"
         >
           {deleting ? "Deleting..." : "Delete Camp"}
         </button>

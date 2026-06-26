@@ -21,7 +21,7 @@ const CreateCamp = () => {
       subtitle="Add a summer activity for guests to discover."
       maxWidth="max-w-3xl"
     >
-      <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+      <div className="rounded-xl border-2 border-black bg-white p-6">
         <CampForm
           onSubmit={handleCreate}
           submitting={loading}

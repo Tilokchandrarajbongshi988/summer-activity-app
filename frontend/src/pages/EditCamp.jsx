@@ -41,7 +41,7 @@ const EditCamp = () => {
   if (!camp) {
     return (
       <SunnyPage>
-        <p className="rounded-xl border border-gray-200 bg-white p-6 text-gray-700 shadow-sm">
+        <p className="rounded-xl border-2 border-black bg-white p-6 text-black">
           Camp not found.
         </p>
       </SunnyPage>
@@ -54,7 +54,7 @@ const EditCamp = () => {
       subtitle="Update the camp details, image, or remove the camp."
       maxWidth="max-w-3xl"
     >
-      <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+      <div className="rounded-xl border-2 border-black bg-white p-6">
         <CampForm
           key={camp._id}
           initialValues={camp}

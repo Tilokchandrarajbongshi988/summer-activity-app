@@ -52,7 +52,7 @@ const CampDetails = () => {
   if (!selectedCamp) {
     return (
       <SunnyPage>
-        <p className="rounded-xl border border-gray-200 bg-white p-6 text-gray-700 shadow-sm">
+        <p className="rounded-xl border-2 border-black bg-white p-6 text-black">
           Camp not found.
         </p>
       </SunnyPage>
@@ -61,7 +61,7 @@ const CampDetails = () => {
 
   return (
     <SunnyPage maxWidth="max-w-3xl">
-      <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+      <div className="rounded-xl border-2 border-black bg-white p-6">
         <CampImage
           src={selectedCamp.photo}
           alt={selectedCamp.activityName}
@@ -69,15 +69,15 @@ const CampDetails = () => {
           rounded="rounded-xl"
         />
 
-        <h1 className="mt-6 text-3xl font-bold text-gray-900">
+        <h1 className="mt-6 text-3xl font-bold text-black">
           {selectedCamp.activityName}
         </h1>
-        <p className="mt-2 text-gray-600">Location: {selectedCamp.location}</p>
-        <p className="font-medium text-gray-700">
+        <p className="mt-2 text-black/70">Location: {selectedCamp.location}</p>
+        <p className="font-medium text-black">
           Price: Rs. {selectedCamp.price}
         </p>
 
-        <p className="mt-5 rounded-xl border border-gray-200 bg-gray-50 p-5 text-gray-700">
+        <p className="mt-5 rounded-xl border-2 border-black bg-yellow-100 p-5 text-black">
           {selectedCamp.description || "No description available."}
         </p>
 
@@ -86,7 +86,7 @@ const CampDetails = () => {
             type="button"
             onClick={handleFavorite}
             disabled={updatingFavorite || bookingCamp}
-            className="flex items-center justify-center gap-2 rounded-lg border border-gray-300 px-5 py-2.5 font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+            className="flex items-center justify-center gap-2 rounded-lg border-2 border-black bg-yellow-300 px-5 py-2.5 font-semibold text-black hover:bg-yellow-200 disabled:opacity-50"
           >
             {updatingFavorite ? "Saving..." : "Favorite"}
           </button>
@@ -95,7 +95,7 @@ const CampDetails = () => {
             type="button"
             onClick={handleBook}
             disabled={updatingFavorite || bookingCamp}
-            className="flex items-center justify-center gap-2 rounded-lg bg-gray-900 px-5 py-2.5 font-semibold text-white hover:bg-gray-800 disabled:opacity-50"
+            className="flex items-center justify-center gap-2 rounded-lg bg-black px-5 py-2.5 font-semibold text-white hover:bg-black/80 disabled:opacity-50"
           >
             {bookingCamp ? "Booking..." : "Book"}
           </button>

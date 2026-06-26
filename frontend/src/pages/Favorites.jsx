@@ -23,7 +23,7 @@ const Favorites = () => {
   if (!loading && favorites.length === 0) {
     return (
       <SunnyPage title="Favorites">
-        <p className="rounded-xl border border-gray-200 bg-white p-6 text-gray-700 shadow-sm">
+        <p className="rounded-xl border-2 border-black bg-white p-6 text-black">
           No favorite camps yet.
         </p>
       </SunnyPage>
@@ -40,7 +40,7 @@ const Favorites = () => {
         {favorites.map((camp) => (
           <div
             key={camp._id}
-            className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm"
+            className="overflow-hidden rounded-xl border-2 border-black bg-white"
           >
             <CampImage
               src={camp.photo}
@@ -49,11 +49,11 @@ const Favorites = () => {
             />
 
             <div className="p-6">
-              <h3 className="text-xl font-bold text-gray-900">
+              <h3 className="text-xl font-bold text-black">
                 {camp.activityName}
               </h3>
-              <p className="mt-2 text-gray-600">Location: {camp.location}</p>
-              <p className="mt-1 font-medium text-gray-700">
+              <p className="mt-2 text-black/70">Location: {camp.location}</p>
+              <p className="mt-1 font-medium text-black">
                 Price: Rs. {camp.price}
               </p>
 
@@ -61,7 +61,7 @@ const Favorites = () => {
                 type="button"
                 onClick={() => handleRemoveFavorite(camp._id)}
                 disabled={removingFavorite}
-                className="mt-5 flex items-center justify-center gap-2 rounded-lg bg-red-600 px-4 py-2.5 font-semibold text-white hover:bg-red-700 disabled:opacity-50"
+                className="mt-5 flex items-center justify-center gap-2 rounded-lg bg-black px-4 py-2.5 font-semibold text-white hover:bg-black/80 disabled:opacity-50"
               >
                 {removingFavorite ? "Removing..." : "Remove Favorite"}
               </button>
