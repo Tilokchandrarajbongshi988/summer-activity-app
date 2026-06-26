@@ -1,12 +1,14 @@
-import { createContext, useEffect, useState } from "react";
-
-export const AuthContext = createContext();
+import { useCallback, useEffect, useState } from "react";
+import AuthContext from "./AuthContextObject";
+import { logout as logoutRequest } from "../services/authService";
+import useCampStore from "../zustand/useCampStore";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const clearCampStore = useCampStore((state) => state.clearCampStore);
 
-  const getMe = async () => {
+  const getMe = useCallback(async () => {
     try {
       console.log("calling /me");
 
@@ -16,6 +18,12 @@ export const AuthProvider = ({ children }) => {
 
       const data = await res.json();
       console.log("ME RESPONSE", data)
+
+      if (!res.ok) {
+        setUser(null);
+        return;
+      }
+
       setUser(data.user);
     } catch (err) {
       console.log(err);
@@ -23,14 +31,29 @@ export const AuthProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
+  }, []);
+
+  const logout = async () => {
+    try {
+      await logoutRequest();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setUser(null);
+      clearCampStore();
+    }
   };
 
   useEffect(() => {
-    getMe(); //  RUNS WHEN APP LOADS
-  }, []);
+    const loadUser = async () => {
+      await getMe();
+    };
+
+    loadUser();
+  }, [getMe]);
 
   return (
-    <AuthContext.Provider value={{ user, setUser, getMe, loading, }}>
+    <AuthContext.Provider value={{ user, setUser, getMe, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

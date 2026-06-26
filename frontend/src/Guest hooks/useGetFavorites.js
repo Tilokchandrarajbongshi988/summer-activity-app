@@ -1,22 +1,28 @@
-// hooks/useGetFavorites.js
 import { useEffect, useState } from "react";
-import useCampStore from "../zustand/useCampStore";
 import toast from "react-hot-toast";
+import useCampStore from "../zustand/useCampStore";
 
 const useGetFavorites = () => {
   const [loading, setLoading] = useState(false);
-  const { favorites, setFavorites } = useCampStore();
+  const favorites = useCampStore((state) => state.favorites);
+  const setFavorites = useCampStore((state) => state.setFavorites);
 
   useEffect(() => {
     const fetchFavorites = async () => {
       setLoading(true);
       try {
-        const res = await fetch("/api/favorites", {
-          credentials: "include",
-        });
+        const res = await fetch(
+          "http://localhost:5000/api/favourites",
+          {
+            credentials: "include",
+          }
+        );
 
         const data = await res.json();
-        if (data.error) throw new Error(data.error);
+
+        if (!res.ok) {
+          throw new Error(data.error || "Failed to fetch favorites");
+        }
 
         setFavorites(data);
       } catch (err) {

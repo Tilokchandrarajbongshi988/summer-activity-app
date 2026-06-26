@@ -1,22 +1,28 @@
-// hooks/useGetBookings.js
 import { useEffect, useState } from "react";
-import useCampStore from "../zustand/useCampStore";
 import toast from "react-hot-toast";
+import useCampStore from "../zustand/useCampStore";
 
 const useGetBookings = () => {
   const [loading, setLoading] = useState(false);
-  const { bookings, setBookings } = useCampStore();
+  const bookings = useCampStore((state) => state.bookings);
+  const setBookings = useCampStore((state) => state.setBookings);
 
   useEffect(() => {
     const fetchBookings = async () => {
       setLoading(true);
       try {
-        const res = await fetch("/api/bookings", {
-          credentials: "include",
-        });
+        const res = await fetch(
+          "http://localhost:5000/api/bookings",
+          {
+            credentials: "include",
+          }
+        );
 
         const data = await res.json();
-        if (data.error) throw new Error(data.error);
+
+        if (!res.ok) {
+          throw new Error(data.error || "Failed to fetch bookings");
+        }
 
         setBookings(data);
       } catch (err) {

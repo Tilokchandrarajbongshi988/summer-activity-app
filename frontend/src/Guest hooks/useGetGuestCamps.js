@@ -1,19 +1,29 @@
-// hooks/useGetCamps.js
 import { useEffect, useState } from "react";
-import useCampStore from "../zustand/useCampStore";
 import toast from "react-hot-toast";
+import useCampStore from "../zustand/useCampStore";
 
 const useGetGuestCamps = () => {
   const [loading, setLoading] = useState(false);
-  const { camps, setCamps } = useCampStore();
+  const camps = useCampStore((state) => state.camps);
+  const setCamps = useCampStore((state) => state.setCamps);
 
   useEffect(() => {
     const fetchCamps = async () => {
       setLoading(true);
       try {
-        const res = await fetch("/api/camps");
+        const res = await fetch("http://localhost:5000/api/guest", {
+          credentials: "include",
+        });
+
         const data = await res.json();
-        if (data.error) throw new Error(data.error);
+
+        if (!res.ok) {
+          throw new Error(data.error || "Failed to fetch camps");
+        }
+
+        if (!Array.isArray(data)) {
+          throw new Error("Invalid camps response");
+        }
 
         setCamps(data);
       } catch (err) {

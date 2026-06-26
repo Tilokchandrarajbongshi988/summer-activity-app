@@ -54,6 +54,20 @@ const useCampStore = create((set) => ({
     })),
 
   setBookings: (bookings) => set({ bookings }),
+
+  addBooking: (booking) =>
+    set((state) => ({
+      bookings: [booking, ...state.bookings],
+    })),
+
+  clearCampStore: () =>
+    set({
+      camps: [],
+      hostCamps: [],
+      selectedCamp: null,
+      favorites: [],
+      bookings: [],
+    }),
 }));
 
 export default useCampStore;

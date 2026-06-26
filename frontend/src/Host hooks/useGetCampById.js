@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import useCampStore from "../zustand/useCampStore";
 
 const useGetCampById = (campId) => {
-  const [camp, setCamp] = useState(null);
   const [loading, setLoading] = useState(false);
+  const selectedCamp = useCampStore((state) => state.selectedCamp);
+  const setSelectedCamp = useCampStore((state) => state.setSelectedCamp);
 
   useEffect(() => {
     const fetchCamp = async () => {
+      setSelectedCamp(null);
       setLoading(true);
       try {
         const res = await fetch(
@@ -18,11 +21,11 @@ const useGetCampById = (campId) => {
 
         const data = await res.json();
 
-        if (data.error) {
-          throw new Error(data.error);
+        if (!res.ok) {
+          throw new Error(data.error || "Failed to fetch camp");
         }
 
-        setCamp(data);
+        setSelectedCamp(data);
       } catch (err) {
         toast.error(err.message);
       } finally {
@@ -33,9 +36,9 @@ const useGetCampById = (campId) => {
     if (campId) {
       fetchCamp();
     }
-  }, [campId]);
+  }, [campId, setSelectedCamp]);
 
-  return { camp, loading };
+  return { camp: selectedCamp, loading };
 };
 
 export default useGetCampById;

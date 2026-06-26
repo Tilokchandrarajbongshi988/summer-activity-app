@@ -14,11 +14,13 @@ import HostCamps from "./pages/HostCamps";
 import EditCamp from "./pages/EditCamp";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute"
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <Navbar />
         <Routes>
           {/* Public Route */}
           <Route path="/" element={<AuthPage />} />
@@ -51,9 +53,24 @@ function App() {
             }
           />
 
-          {/* Public Camps */}
-          <Route path="/camps" element={<CampList />} />
-          <Route path="/camp/:campId" element={<CampDetails />} />
+          {/* Guest Camps */}
+          <Route
+            path="/camps"
+            element={
+              <ProtectedRoute role="guest">
+                <CampList />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/camp/:campId"
+            element={
+              <ProtectedRoute role="guest">
+                <CampDetails />
+              </ProtectedRoute>
+            }
+          />
 
           {/* Host Protected Routes */}
           <Route
