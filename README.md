@@ -2,11 +2,34 @@
 
 A full-stack MERN camp booking application where hosts can create and manage summer activity camps, and guests can browse camps, view details, book camps, and save favorites.
 
+## Project Motivation
+
+Many children in India spend their summer holidays without enough structured outdoor activities, learning opportunities, or affordable events to join. This app was created to make summer activities easier to discover and book by bringing low-cost camps and events into one simple platform.
+
+The goal is to help parents and students find useful summer programs, while also giving hosts a place to list and manage their camps.
+
 ## Live Demo
 
 [View Live App](https://summer-activity-app-1.onrender.com/)
 
 Note: This app is hosted on Render's free plan, so the first load may take a few seconds if the server was inactive.
+
+## Screenshots
+
+### Home Page
+![Home Page](./screenshots/home-page.png)
+
+### Create Account
+![Create Account](./screenshots/create-account.png)
+
+### Guest Dashboard
+![Guest Dashboard](./screenshots/guest-dashboard.png)
+
+### All Camps
+![All Camps](./screenshots/all-camps.png)
+
+### Camp Details
+![Camp Details](./screenshots/camp-details.png)
 
 The project is built with a clear separation of responsibilities:
 
@@ -95,6 +118,7 @@ newProjectofsummercampbookings/
 |   |   |-- services/
 |   |   `-- zustand/
 |   `-- vite.config.js
+|-- screenshots/
 |-- package.json
 `-- README.md
 ```
