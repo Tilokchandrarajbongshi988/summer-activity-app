@@ -13,6 +13,7 @@ import HostDashboard from "./pages/HostDashboard";
 import CreateCamp from "./pages/CreateCamp";
 import HostCamps from "./pages/HostCamps";
 import EditCamp from "./pages/EditCamp";
+import Profile from "./pages/Profile";
 import { AuthProvider } from "./context/AuthProvider";
 import ProtectedRoute from "./components/ProtectedRoute"
 import Navbar from "./components/Navbar";
@@ -25,6 +26,15 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<AuthPage />} />
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
 
           <Route
             path="/guest/dashboard"

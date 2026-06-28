@@ -18,11 +18,13 @@ const Navbar = () => {
       ? [
           { label: "My Camps", path: "/host/my-camps" },
           { label: "Create Camp", path: "/host/create-camp" },
+          { label: "Profile", path: "/profile" },
         ]
       : [
           { label: "All Camps", path: "/camps" },
           { label: "Bookings", path: "/bookings" },
           { label: "Favorites", path: "/favorites" },
+          { label: "Profile", path: "/profile" },
         ];
 
   const handleLogout = async () => {
