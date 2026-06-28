@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 import CampImage from "../components/CampImage";
 import LoadingSpinner from "../components/LoadingSpinner";
 import SunnyPage from "../components/SunnyPage";
@@ -97,7 +98,8 @@ const CampDetails = () => {
             disabled={updatingFavorite || bookingCamp}
             className="flex items-center justify-center gap-2 rounded-lg bg-black px-5 py-2.5 font-semibold text-white hover:bg-black/80 disabled:opacity-50"
           >
-            {bookingCamp ? "Booking..." : "Book"}
+            {bookingCamp && <ClipLoader color="#ffffff" size={18} />}
+            {bookingCamp ? "Processing Payment..." : "Book"}
           </button>
         </div>
       </div>

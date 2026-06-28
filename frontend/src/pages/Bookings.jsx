@@ -55,6 +55,12 @@ const Bookings = () => {
                 <p className="mt-1 font-medium text-black">
                   Price: {camp?.price ? `Rs. ${camp.price}` : "Not available"}
                 </p>
+                <p className="mt-3 rounded-lg border-2 border-black bg-yellow-100 px-3 py-2 text-sm font-semibold text-black">
+                  Payment: {booking.paymentStatus || "pending"}
+                </p>
+                <p className="mt-2 text-sm text-black/70">
+                  Amount Paid: Rs. {booking.amountPaid || 0}
+                </p>
               </div>
             </div>
           );

@@ -4,6 +4,8 @@ const bookingRou = express.Router();
 const protectRoute = require("../middleware/protectRoute");
 const bookingController =require("../controllers/bookingController");
 
+bookingRou.post("/pay/:campId", protectRoute, bookingController.payAndBookCamp);
+
 bookingRou.post("/:campId", protectRoute, bookingController.bookCamp);
 
 bookingRou.get("/", protectRoute, bookingController.getMyBookings);

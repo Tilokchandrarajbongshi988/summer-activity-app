@@ -12,7 +12,7 @@ const useBookCamp = () => {
 
     try {
       const res = await fetch(
-        `/api/bookings/${campId}`,
+        `/api/bookings/pay/${campId}`,
         {
           method: "POST",
           credentials: "include",
