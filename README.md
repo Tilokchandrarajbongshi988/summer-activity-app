@@ -2,6 +2,8 @@
 
 A full-stack MERN camp booking application where hosts can create and manage summer activity camps, and guests can browse camps, view details, book camps, and save favorites.
 
+The app also includes role-based profile pages and a dummy payment flow for confirming guest bookings.
+
 ## Project Motivation
 
 Many children in India spend their summer holidays without enough structured outdoor activities, learning opportunities, or affordable events to join. This app was created to make summer activities easier to discover and book by bringing low-cost camps and events into one simple platform.
@@ -42,9 +44,10 @@ The project is built with a clear separation of responsibilities:
 ### Guest
 
 - Sign up and login as a guest
+- View guest profile details
 - View all available camps
 - Open camp details in a modal
-- Book a camp
+- Book a camp with dummy payment confirmation
 - Add camps to favorites
 - Remove camps from favorites
 - View all bookings
@@ -53,6 +56,7 @@ The project is built with a clear separation of responsibilities:
 ### Host
 
 - Sign up and login as a host
+- View host profile details
 - Create a new camp
 - Upload a JPG or PNG camp image
 - Image size validation up to 1 MB
@@ -65,6 +69,8 @@ The project is built with a clear separation of responsibilities:
 
 - Role-based protected routes
 - JWT authentication with cookies
+- Role-based user profile page
+- Dummy payment flow for booking confirmation
 - Toast messages for validation and API feedback
 - Zustand state management
 - MongoDB Atlas database
@@ -197,9 +203,12 @@ GET /api/guest/camps/:campId
 ### Bookings
 
 ```txt
+POST /api/bookings/pay/:campId
 POST /api/bookings/:campId
 GET  /api/bookings
 ```
+
+`POST /api/bookings/pay/:campId` is a dummy payment route. It marks the booking as paid, stores the dummy payment method, saves the amount paid, and confirms the booking.
 
 ### Favorites
 
@@ -260,13 +269,12 @@ This keeps the project simple for learning and demonstration. For a larger produ
 
 ## Future Improvements
 
-- Add payment flow for bookings
 - Add booking cancellation
 - Add image cloud storage
 - Add search and filter options
-- Add user profile pages
 - Add admin dashboard
 - Add better form validation messages
+- Replace dummy payment with Razorpay or Stripe
 
 ## Author
 
