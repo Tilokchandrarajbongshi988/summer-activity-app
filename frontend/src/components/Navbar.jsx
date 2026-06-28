@@ -1,13 +1,14 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
   const [loggingOut, setLoggingOut] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  if (!user) {
+  if (!user || location.pathname === "/") {
     return null;
   }
 
