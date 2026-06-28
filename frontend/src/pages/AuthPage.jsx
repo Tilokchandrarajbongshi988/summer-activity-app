@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
@@ -27,7 +27,17 @@ const AuthPage = () => {
   const [userType, setUserType] = useState("guest");
 
   const navigate = useNavigate();
-  const { setUser } = useContext(AuthContext);
+  const { user, setUser, loading } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (!loading && user) {
+      if (user.userType === "host") {
+        navigate("/host/dashboard", { replace: true });
+      } else {
+        navigate("/guest/dashboard", { replace: true });
+      }
+    }
+  }, [user, loading, navigate]);
 
   const openLogin = () => {
     setIsSignup(false);

@@ -11,11 +11,11 @@ const ProtectedRoute = ({ children, role }) => {
   }
 
   if (!user) {
-    return <Navigate to="/" />;
+    return <Navigate to="/" replace />;
   }
 
   if (role && user.userType !== role) {
-    return <Navigate to="/" />;
+    return <Navigate to="/" replace />;
   }
 
   return children;
