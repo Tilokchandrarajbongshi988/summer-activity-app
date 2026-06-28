@@ -16,7 +16,7 @@ const HostCamps = () => {
 
   if (loading) {
     return (
-      <SunnyPage>
+      <SunnyPage background="bg-orange-100">
         <LoadingSpinner text="Loading your camps..." />
       </SunnyPage>
     );
@@ -24,7 +24,7 @@ const HostCamps = () => {
 
   if (!loading && camps.length === 0) {
     return (
-      <SunnyPage title="My Camps">
+      <SunnyPage title="My Camps" background="bg-orange-100">
         <p className="rounded-xl border-2 border-black bg-white p-6 text-black">
           You haven&apos;t created any camps yet.
         </p>
@@ -37,6 +37,7 @@ const HostCamps = () => {
       title="My Camps"
       subtitle="Preview, edit, or delete the camps guests can see."
       maxWidth="max-w-7xl"
+      background="bg-orange-100"
     >
       <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
         {camps.map((camp) => (

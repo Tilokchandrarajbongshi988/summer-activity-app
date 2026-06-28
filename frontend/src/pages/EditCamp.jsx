@@ -32,7 +32,7 @@ const EditCamp = () => {
 
   if (loading && !camp) {
     return (
-      <SunnyPage>
+      <SunnyPage background="bg-orange-100">
         <LoadingSpinner text="Loading camp..." />
       </SunnyPage>
     );
@@ -40,7 +40,7 @@ const EditCamp = () => {
 
   if (!camp) {
     return (
-      <SunnyPage>
+      <SunnyPage background="bg-orange-100">
         <p className="rounded-xl border-2 border-black bg-white p-6 text-black">
           Camp not found.
         </p>
@@ -53,6 +53,7 @@ const EditCamp = () => {
       title="Edit Camp"
       subtitle="Update the camp details, image, or remove the camp."
       maxWidth="max-w-3xl"
+      background="bg-orange-100"
     >
       <div className="rounded-xl border-2 border-black bg-white p-6">
         <CampForm

@@ -15,11 +15,12 @@ const Profile = () => {
       title={`${role} Profile`}
       subtitle="View your account details and continue where you left off."
       maxWidth="max-w-5xl"
+      background={isHost ? "bg-orange-100" : "bg-yellow-100"}
     >
       <div className="grid gap-6 lg:grid-cols-2">
         <section className="rounded-xl border-2 border-black bg-white p-6">
           <div className="flex items-center gap-4">
-            <div className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-black bg-yellow-300 text-2xl font-bold text-black">
+            <div className={`flex h-20 w-20 items-center justify-center rounded-full border-2 border-black ${isHost ? "bg-orange-300" : "bg-yellow-300"} text-2xl font-bold text-black`}>
               {firstLetter}
             </div>
 
@@ -61,14 +62,14 @@ const Profile = () => {
               <>
                 <Link
                   to="/host/my-camps"
-                  className="rounded-lg border-2 border-black bg-yellow-300 px-4 py-3 text-center font-semibold text-black hover:bg-yellow-200"
+                  className="rounded-lg border-2 border-black bg-orange-300 px-4 py-3 text-center font-semibold text-black hover:bg-orange-200"
                 >
                   Manage Camps
                 </Link>
 
                 <Link
                   to="/host/create-camp"
-                  className="rounded-lg border-2 border-black bg-yellow-300 px-4 py-3 text-center font-semibold text-black hover:bg-yellow-200"
+                  className="rounded-lg border-2 border-black bg-orange-300 px-4 py-3 text-center font-semibold text-black hover:bg-orange-200"
                 >
                   Create Camp
                 </Link>

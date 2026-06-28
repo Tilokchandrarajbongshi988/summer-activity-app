@@ -20,6 +20,7 @@ const CreateCamp = () => {
       title="Create New Camp"
       subtitle="Add a summer activity for guests to discover."
       maxWidth="max-w-3xl"
+      background="bg-orange-100"
     >
       <div className="rounded-xl border-2 border-black bg-white p-6">
         <CampForm

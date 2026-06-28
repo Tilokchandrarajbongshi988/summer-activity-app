@@ -7,6 +7,7 @@ const HostDashboard = () => {
       title="Host Dashboard"
       subtitle="Create camps, manage your listings, and keep your activities ready for guests."
       maxWidth="max-w-5xl"
+      background="bg-orange-100"
     >
       <div className="grid gap-6 sm:grid-cols-3">
         <Link

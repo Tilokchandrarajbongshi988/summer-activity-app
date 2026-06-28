@@ -3,9 +3,10 @@ const SunnyPage = ({
   subtitle,
   children,
   maxWidth = "max-w-6xl",
+  background = "bg-yellow-100",
 }) => {
   return (
-    <div className="min-h-screen bg-yellow-100 px-4 py-8 sm:px-6">
+    <div className={`min-h-screen ${background} px-4 py-8 sm:px-6`}>
       <div className={`mx-auto ${maxWidth}`}>
         {(title || subtitle) && (
           <header className="mb-6 rounded-xl border-2 border-black bg-white p-6">
