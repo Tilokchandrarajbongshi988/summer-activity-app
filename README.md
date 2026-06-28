@@ -272,7 +272,6 @@ This keeps the project simple for learning and demonstration. For a larger produ
 - Add booking cancellation
 - Add image cloud storage
 - Add search and filter options
-- Add admin dashboard
 - Add better form validation messages
 - Replace dummy payment with Razorpay or Stripe
 
