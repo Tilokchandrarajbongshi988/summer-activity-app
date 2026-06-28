@@ -33,6 +33,9 @@ Note: This app is hosted on Render's free plan, so the first load may take a few
 ### Camp Details
 ![Camp Details](./screenshots/camp-details.png)
 
+### Profile Page
+![Profile Page](./screenshots/profile-page.png)
+
 The project is built with a clear separation of responsibilities:
 
 - Zustand stores application data
