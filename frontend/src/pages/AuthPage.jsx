@@ -169,6 +169,20 @@ const AuthPage = () => {
 
   return (
     <div className="min-h-screen bg-yellow-100">
+      <div className="fixed left-4 top-4 z-20 rounded-xl border-2 border-black bg-white p-4 text-left text-sm text-black shadow-md">
+        <p className="font-bold">Try the features</p>
+        <div className="mt-2">
+          <p className="font-semibold">Guest Login</p>
+          <p>Email: demo@gmail.com</p>
+          <p>Password: Demo12345</p>
+        </div>
+        <div className="mt-3">
+          <p className="font-semibold">Host Login</p>
+          <p>Email: hostdemo@gmail.com</p>
+          <p>Password: Hostdemo12345</p>
+        </div>
+      </div>
+
       <nav className="flex justify-end px-8 py-6">
         <button
           type="button"
@@ -231,12 +245,14 @@ const AuthPage = () => {
             </div>
 
             {!isSignup ? (
-              <div className="mt-8 space-y-4">
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                handleLogin();
+              }} className="mt-8 space-y-4">
                 <input
                   type="email"
                   placeholder="Email"
                   value={email}
-                  required
                   inputMode="email"
                   autoComplete="email"
                   className={inputClassName}
@@ -247,16 +263,13 @@ const AuthPage = () => {
                   type="password"
                   placeholder="Password"
                   value={password}
-                  required
-                  minLength={MIN_PASSWORD_LENGTH}
                   autoComplete="current-password"
                   className={inputClassName}
                   onChange={(e) => setPassword(e.target.value)}
                 />
 
                 <button
-                  type="button"
-                  onClick={handleLogin}
+                  type="submit"
                   disabled={authLoading}
                   className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-black py-3 font-semibold text-white hover:bg-black/80 disabled:opacity-50"
                 >
@@ -273,14 +286,16 @@ const AuthPage = () => {
                     Sign Up
                   </button>
                 </p>
-              </div>
+              </form>
             ) : (
-              <div className="mt-8 space-y-4">
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                handleSignUp();
+              }} className="mt-8 space-y-4">
                 <input
                   type="text"
                   placeholder="Full Name"
                   value={fullName}
-                  required
                   autoComplete="name"
                   className={inputClassName}
                   onChange={(e) => setFullName(e.target.value)}
@@ -290,7 +305,6 @@ const AuthPage = () => {
                   type="email"
                   placeholder="Email"
                   value={signupEmail}
-                  required
                   inputMode="email"
                   autoComplete="email"
                   className={inputClassName}
@@ -301,8 +315,6 @@ const AuthPage = () => {
                   type="password"
                   placeholder="Password"
                   value={signupPassword}
-                  required
-                  minLength={MIN_PASSWORD_LENGTH}
                   autoComplete="new-password"
                   className={inputClassName}
                   onChange={(e) => setSignupPassword(e.target.value)}
@@ -312,8 +324,6 @@ const AuthPage = () => {
                   type="password"
                   placeholder="Confirm Password"
                   value={confirmPassword}
-                  required
-                  minLength={MIN_PASSWORD_LENGTH}
                   autoComplete="new-password"
                   className={inputClassName}
                   onChange={(e) => setConfirmPassword(e.target.value)}
@@ -344,8 +354,7 @@ const AuthPage = () => {
                 </div>
 
                 <button
-                  type="button"
-                  onClick={handleSignUp}
+                  type="submit"
                   disabled={authLoading}
                   className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-black py-3 font-semibold text-white hover:bg-black/80 disabled:opacity-50"
                 >
@@ -362,7 +371,7 @@ const AuthPage = () => {
                     Login
                   </button>
                 </p>
-              </div>
+              </form>
             )}
           </div>
         </div>

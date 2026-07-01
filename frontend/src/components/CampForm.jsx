@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import CampImage from "./CampImage";
 
 const MAX_IMAGE_SIZE = 1024 * 1024;
@@ -75,6 +76,32 @@ const CampForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!form.activityName.trim()) {
+      toast.error("Activity name is required");
+      return;
+    }
+
+    if (!form.location.trim()) {
+      toast.error("Location is required");
+      return;
+    }
+
+    if (!form.price) {
+      toast.error("Price is required");
+      return;
+    }
+
+    if (Number(form.price) <= 0) {
+      toast.error("Price must be greater than 0");
+      return;
+    }
+
+    if (!form.description.trim()) {
+      toast.error("Description is required");
+      return;
+    }
+
     onSubmit(form);
   };
 
